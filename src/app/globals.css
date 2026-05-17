@@ -295,8 +295,10 @@ button {
   .desktop-menu, .nav-book-btn {
     display: none !important;
   }
-  .mobile-toggle {
-    display: block !important;
+  .mobile-nav-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 0.8rem;
   }
 }
 
@@ -1319,6 +1321,17 @@ button {
   .mobile-toggle:hover,
   .mobile-toggle:focus {
     opacity: 1 !important;
+  }
+
+  /* One-click translation toggle in mobile header */
+  .mobile-lang-navbar-btn {
+    opacity: 0.9;
+    transition: all 0.3s var(--ease-lux) !important;
+  }
+
+  .mobile-lang-navbar-btn:active {
+    background-color: var(--accent-olive-dark) !important;
+    transform: scale(0.95);
   }
 }
 

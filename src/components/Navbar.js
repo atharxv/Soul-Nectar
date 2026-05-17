@@ -185,15 +185,42 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* [MOBILE MENU IMPROVEMENT 6] Standardised Close / Menu toggle button at 24px Lucide size */}
-        <button 
-          className="mobile-toggle" 
-          onClick={() => setIsOpen(!isOpen)}
-          aria-label={isOpen ? t('nav.ariaCloseMenu') : t('nav.ariaOpenMenu')}
-          style={{ display: "none", color: "var(--text-primary)", position: "relative", zIndex: 60 }}
-        >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* [MOBILE ACTIONS] Direct direct one-click translation switcher + standardised menu toggle */}
+        <div className="mobile-nav-actions" style={{ display: "none" }}>
+          <button 
+            onClick={() => setLang(lang === 'DE' ? 'EN' : 'DE')} 
+            className="mobile-lang-navbar-btn"
+            aria-label={lang === 'DE' ? t('nav.ariaLangEN') : t('nav.ariaLangDE')}
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              width: "44px",
+              height: "44px",
+              borderRadius: "4px",
+              backgroundColor: "var(--accent-olive-light)",
+              color: "var(--white)",
+              border: "none",
+              cursor: "pointer",
+              fontFamily: "var(--font-sans)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.05em",
+              transition: "background-color 0.3s var(--ease-lux)"
+            }}
+          >
+            {lang === 'DE' ? 'EN' : 'DE'}
+          </button>
+
+          <button 
+            className="mobile-toggle" 
+            onClick={() => setIsOpen(!isOpen)}
+            aria-label={isOpen ? t('nav.ariaCloseMenu') : t('nav.ariaOpenMenu')}
+            style={{ color: "var(--text-primary)", position: "relative", zIndex: 60 }}
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu Overlay */}
