@@ -291,6 +291,10 @@ button {
   letter-spacing: 0.08em;
 }
 
+.mobile-nav-actions {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .desktop-menu, .nav-book-btn {
     display: none !important;

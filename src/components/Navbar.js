@@ -186,7 +186,7 @@ export default function Navbar() {
         </div>
 
         {/* [MOBILE ACTIONS] Direct direct one-click translation switcher + standardised menu toggle */}
-        <div className="mobile-nav-actions" style={{ display: "none" }}>
+        <div className="mobile-nav-actions">
           <button 
             onClick={() => setLang(lang === 'DE' ? 'EN' : 'DE')} 
             className="mobile-lang-navbar-btn"
