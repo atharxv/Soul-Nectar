@@ -1,0 +1,1327 @@
+:root {
+  /* ============================================
+     1. BACKGROUNDS
+     Purpose: Establishes the canvas. We use warm, organic 
+     tones to create a grounded, breathable atmosphere. 
+     Never use pure white or stark grays for large areas.
+     ============================================ */
+  --bg-color: #F4EFE9; /* Warm pale beige/peach — The primary canvas. Use for page backgrounds to evoke calm. */
+  --bg-card: #FBF9F6;  /* Off-white/cream — Slightly lighter than the canvas. Use to lift cards and sections subtly. */
+
+  /* ============================================
+     2. TEXT
+     Purpose: Ensures readability while maintaining softness.
+     We avoid harsh #000000 to keep the emotional tone gentle.
+     ============================================ */
+  --text-primary: #383F32;   /* Very dark olive/charcoal — For all primary headings and essential reading. */
+  --text-secondary: #5A6352; /* Lighter olive — For body copy, secondary labels, and descriptive text. */
+  --white: #FFFFFF;          /* Pure white — Strictly reserved for text inside dark buttons or dark overlays. */
+
+  /* ============================================
+     3. ACCENTS
+     Purpose: Drives action and interaction. The brand's
+     signature wellness greens.
+     ============================================ */
+  --accent-olive-dark: #66755D;  /* Deep sage olive — The grounding presence. Used for CTAs and hover states. */
+  --accent-olive-light: #9DAE94; /* Soft sage green — The primary brand accent and inactive button states. */
+
+  /* ============================================
+     4. TYPOGRAPHY
+     Purpose: Creates an editorial, elegant hierarchy.
+     ============================================ */
+  --font-serif: var(--font-caudex), "Caudex", serif;         /* Caudex — Used exclusively for headings and logos to feel rooted and historic. */
+  --font-sans: var(--font-josefin), "Josefin Sans", sans-serif; /* Josefin Sans — Used for body copy and UI elements to maintain airy modernism. */
+
+  /* ============================================
+     5. SPACING SCALE
+     Purpose: Defines the breathing room between elements.
+     Holistic design requires generous negative space.
+     ============================================ */
+  /* NEW */ --space-xs: 0.5rem;    /* Micro-adjustments and inner-component gaps. */
+  /* NEW */ --space-sm: 1rem;      /* Standard gap between related UI elements. */
+  /* NEW */ --space-md: 2rem;      /* Paragraph spacing and inner card padding. */
+  /* NEW */ --space-lg: 4rem;      /* Spacing between distinct content blocks. */
+  /* NEW */ --space-xl: 8rem;      /* Primary section vertical padding. Defines the rhythm of the page. */
+
+  /* ============================================
+     6. LAYOUT
+     Purpose: Controls the horizontal rhythm and containment.
+     ============================================ */
+  /* NEW */ --container-max: 1280px; /* The maximum width of the reading experience. */
+  /* NEW */ --container-pad: 2rem;   /* The breathing room on mobile and tablet edges. */
+
+  /* ============================================
+     7. BORDERS & RADIUS
+     Purpose: Keeps UI elements feeling soft and tactile, 
+     never sharp or rigid.
+     ============================================ */
+  /* NEW */ --radius-sm: 4px;   /* Subtle softening for buttons and small interactive elements. */
+  /* NEW */ --radius-md: 8px;   /* Standard softening for cards, images, and content wrappers. */
+
+  /* ============================================
+     8. MOTION
+     Purpose: Governs how the interface breathes. 
+     Movements should feel intentional and unhurried.
+     ============================================ */
+  --ease-lux: cubic-bezier(0.25, 1, 0.5, 1); /* All hover transitions use this curve. It decelerates slowly, like a breath releasing. */
+
+  /* ============================================
+     9. FOOTER
+     Purpose: Dedicated footer dark olive background.
+     ============================================ */
+  --bg-footer: #404A38; /* Footer dark olive — slightly different from --text-primary for depth. */
+}
+
+/* BUTTON SYSTEM CONVENTIONS */
+/* 
+  Primary CTA (.btn-primary): Solid --accent-olive-dark background, --white text. 
+  Secondary/Ghost (.btn-outline): Transparent background, 1px solid border, --text-primary text.
+  Hover Behavior: Transform translateY(-2px) and a soft box-shadow. Primary buttons shift to --text-primary on hover.
+  Rules: Always use uppercase tracking (letter-spacing: 0.15em). Never use pure black or sharp corners.
+*/
+
+/* TRANSITION CONVENTIONS */
+/* 
+  Micro-interactions (color, opacity): 0.3s var(--ease-lux).
+  Reveals & Layout shifts: 0.8s var(--ease-lux).
+  Cinematic Image scales: 1.5s var(--ease-lux).
+  Rules: Never use linear easing. Elements should slide and fade gently. Sharp, snappy animations break the calming atmosphere.
+*/
+
+/* HOVER SYSTEM GUIDELINES */
+/* 
+  Opacity shift: Links drop to opacity 0.6.
+  Scale transforms: Never exceed scale(1.03) for images. Buttons only use translateY, never scale.
+  Shadows: Soft spread (e.g., 0 15px 40px rgba(0,0,0,0.06)).
+  Rules: Hover states should invite touch, creating a tactile "lift" off the canvas without jarring layout shifts.
+*/
+
+/* TYPOGRAPHY HIERARCHY */
+/* 
+  H1-H4: Always --font-serif (Caudex). Line-height 1.1. Used for primary narrative anchors.
+  Body Copy: Always --font-sans (Josefin Sans). Line-height 1.8. Used for readability and breathability.
+  Labels/Captions: Uppercase, heavy letter-spacing (0.15em), bold weight. Used for UI wayfinding.
+*/
+
+/* SECTION SPACING RHYTHM */
+/* 
+  Philosophy: Whitespace is a design element, not emptiness. It represents silence and pause.
+  Standard Section: padding: 8rem 0 (--space-xl).
+  Mobile Section: padding: 5rem 0.
+  Internal Gaps: Use --space-md or --space-lg between textual ideas to prevent cognitive overload.
+*/
+
+::selection {
+  background-color: var(--accent-olive-light);
+  color: var(--white);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  caret-color: transparent; /* Prevents the text cursor/pipe from appearing on non-editable text */
+}
+
+input, textarea, [contenteditable="true"] {
+  caret-color: auto; /* Restores the caret for fields where typing is required */
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  line-height: 1.8;
+  font-size: 1.05rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Global Subtle Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.8;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+}
+
+/* Small uppercase section headers */
+.section-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  font-weight: 600;
+  margin-bottom: 2rem;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 2rem; }
+  h3 { font-size: 1.5rem; }
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-sans);
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* Common Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section-padding {
+  padding: 8rem 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 5rem 0;
+  }
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* Primary Button - Solid */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent-olive-dark);
+  color: var(--white);
+  padding: 1.2rem 2.8rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.8s var(--ease-lux);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.btn-primary:hover {
+  background-color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* Secondary Button - Outlined */
+.btn-outline {
+  display: inline-block;
+  background-color: transparent;
+  color: var(--text-primary);
+  border: 1px solid rgba(0,0,0,0.15);
+  padding: 1.2rem 2.8rem;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  font-weight: 500;
+  border-radius: 4px;
+  transition: all 0.8s var(--ease-lux);
+}
+
+.btn-outline:hover {
+  background-color: var(--bg-card);
+  border-color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+/* Cinematic Utilities */
+.cinematic-image-wrapper {
+  overflow: hidden;
+}
+
+.cinematic-image {
+  transition: transform 1.5s var(--ease-lux);
+}
+
+.cinematic-image-wrapper:hover .cinematic-image {
+  transform: scale(1.03);
+}
+
+.tactile-hover {
+  transition: transform 0.8s var(--ease-lux), box-shadow 0.8s var(--ease-lux);
+}
+
+.tactile-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+}
+
+.nav-link {
+  font-size: 0.8rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.8s var(--ease-lux);
+  color: var(--text-primary);
+  white-space: nowrap;
+}
+
+.nav-link:hover {
+  opacity: 0.6;
+  letter-spacing: 0.08em;
+}
+
+@media (max-width: 768px) {
+  .desktop-menu, .nav-book-btn {
+    display: none !important;
+  }
+  .mobile-toggle {
+    display: block !important;
+  }
+}
+
+/* --- NAVBAR MOBILE REFINEMENT --- */
+@media (max-width: 768px) {
+  nav {
+    padding: 0.8rem 0 !important;
+  }
+
+  nav .container {
+    align-items: center !important;
+    min-height: 44px;
+  }
+
+  /* Tighten logo group */
+  .nav-logo-title {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .nav-logo-subtitle {
+    font-size: 0.5rem !important;
+    line-height: 1 !important;
+  }
+
+  /* Hamburger: perfect vertical center */
+  .mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    padding: 0 !important;
+  }
+}
+
+/* DetailedServices Styles */
+@media (max-width: 768px) {
+  .image-container { 
+    margin-top: 2rem; 
+  }
+}
+
+/* Hero Mobile Styles */
+@media (max-width: 900px) {
+  .hero-section {
+    align-items: flex-start !important;
+    padding-top: 150px !important;
+  }
+  .hero-content {
+    padding-right: 0 !important;
+    background: linear-gradient(to right, var(--bg-color) 60%, transparent);
+    padding: 2rem;
+    border-radius: 8px;
+  }
+}
+
+/* Navbar Texture & Scrolled State */
+.nav-scrolled {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+}
+
+.nav-scrolled .nav-logo-title,
+.nav-scrolled .nav-logo-subtitle,
+.nav-scrolled .nav-link,
+.nav-scrolled .nav-dropdown-icon,
+.nav-scrolled .mobile-toggle {
+  color: var(--white) !important;
+}
+
+/* Make CTA and Lang button stand out on dark green background */
+.nav-scrolled .nav-cta-btn,
+.nav-scrolled .nav-lang-btn {
+  background-color: var(--white) !important;
+  color: var(--text-primary) !important;
+}
+.nav-scrolled .nav-cta-btn:hover,
+.nav-scrolled .nav-lang-btn:hover {
+  background-color: var(--bg-card) !important;
+}
+
+/* Dropdown Menu Styles */
+.nav-dropdown {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  cursor: pointer;
+}
+
+.nav-dropdown-icon {
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--text-primary);
+  opacity: 0.7;
+}
+
+.nav-dropdown:hover .nav-dropdown-icon {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+.nav-dropdown-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(15px);
+  background-color: var(--white);
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+  min-width: 240px;
+  box-shadow: 
+    0 4px 6px -1px rgba(0, 0, 0, 0.02),
+    0 10px 15px -3px rgba(0, 0, 0, 0.03),
+    0 20px 40px -5px rgba(0, 0, 0, 0.06);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  border-radius: 12px;
+  padding: 1rem 0;
+  z-index: 100;
+  text-align: left;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.nav-dropdown:hover .nav-dropdown-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(8px);
+}
+
+.nav-dropdown-item {
+  display: block;
+  padding: 0.8rem 1.8rem;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-dropdown-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: var(--accent-olive-light);
+  transform: scaleY(0);
+  transition: transform 0.3s ease;
+  transform-origin: center;
+}
+
+.nav-dropdown-item:hover {
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  padding-left: 2rem;
+}
+
+.nav-dropdown-item:hover::before {
+  transform: scaleY(1);
+}
+
+/* Language Dropdown Styles */
+.nav-lang-dropdown {
+  position: relative;
+  display: inline-flex;
+}
+
+.nav-lang-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.nav-lang-content {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background-color: var(--white);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.4s var(--ease-lux);
+  border: 1px solid rgba(0,0,0,0.04);
+  z-index: 100;
+}
+
+.nav-lang-dropdown:hover .nav-lang-content {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.nav-lang-content::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  right: 14px;
+  width: 12px;
+  height: 12px;
+  background-color: var(--white);
+  transform: rotate(45deg);
+  border-top: 1px solid rgba(0,0,0,0.04);
+  border-left: 1px solid rgba(0,0,0,0.04);
+}
+
+.lang-option {
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+  font-weight: 500;
+  background: transparent;
+}
+
+.lang-option:hover {
+  color: var(--text-primary);
+}
+
+.lang-option.active {
+  background-color: var(--bg-color); /* Soft theme background */
+  color: var(--text-primary);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+}
+
+/* Mobile Menu Styles */
+.mobile-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bg-color);
+  z-index: 40; /* Just below the navbar (z-index: 50) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateY(-20px);
+}
+
+.mobile-menu-overlay.open {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mobile-nav-link {
+  font-family: var(--font-serif);
+  font-size: 2.2rem;
+  color: var(--text-primary);
+  text-decoration: none;
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav-link:hover {
+  opacity: 1;
+  transform: scale(1.05);
+}
+
+.mobile-nav-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.mobile-nav-sublink {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-decoration: none;
+}
+
+/* Editorial Services Styles */
+.services-thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.services-thumbnails {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+@media (max-width: 1024px) {
+  .service-detail-panel {
+    flex-direction: column;
+    padding: 3rem !important;
+    gap: 3rem !important;
+  }
+  .service-detail-img {
+    width: 100%;
+    height: 350px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .services-outer-panel {
+    padding: 4rem 2rem !important;
+  }
+  .service-detail-panel {
+    padding: 2rem !important;
+    gap: 2rem !important;
+  }
+  .service-detail-img {
+    height: 250px !important;
+  }
+  .service-thumb-btn {
+    min-width: 140px !important;
+  }
+}
+
+/* ============================================
+   NEW: PSYCHOTHERAPIE PAGE STYLES
+   ============================================ */
+
+/* Qualifications Grid */
+.qualifications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-md);
+  margin-top: var(--space-md);
+}
+
+.qual-card {
+  background-color: var(--bg-card);
+  padding: 2.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  transition: all 0.8s var(--ease-lux);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.qual-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* GDPR Map Wrapper & Overlay */
+.praxisstandort__map-wrapper {
+  width: 100%;
+  height: 400px;
+  min-height: 350px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+  position: relative;
+  background-color: var(--accent-olive-light);
+}
+
+.praxisstandort__map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+.praxisstandort__map-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--accent-olive-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 50px rgba(0,0,0,0.1);
+  color: var(--white);
+}
+
+/* FAQ Accordion */
+.faq-accordion {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.faq-item {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.03);
+  transition: all 0.4s var(--ease-lux);
+}
+
+.faq-item:hover, .faq-item.is-open {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+}
+
+.faq-question {
+  width: 100%;
+  text-align: left;
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-primary);
+}
+
+.faq-question h3 {
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0;
+  margin: 0;
+  padding-right: 2rem;
+}
+
+.faq-icon {
+  color: var(--accent-olive-dark);
+  flex-shrink: 0;
+}
+
+.faq-answer-wrapper {
+  overflow: hidden;
+}
+
+.faq-answer {
+  padding: 0 2rem 1.5rem 2rem;
+  color: var(--text-secondary);
+  font-family: var(--font-sans);
+  line-height: 1.8;
+  font-size: 1.05rem;
+}
+
+/* ============================================
+   14. GALLERY & MASONRY
+   Purpose: Fotogalerie page layouts.
+   ============================================ */
+.masonry-grid {
+  column-count: 1;
+  column-gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .masonry-grid {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1024px) {
+  .masonry-grid {
+    column-count: 3;
+  }
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 1.5rem;
+  display: inline-block;
+  width: 100%;
+}
+
+.gallery-image-hover:hover {
+  transform: scale(1.03);
+}
+
+/* ============================================
+   15. QUALIFICATIONS CARD HOVER
+   Purpose: Interactive depth for the ueber-mich cards.
+   ============================================ */
+.qual-card-hover {
+  border-left: 2px solid transparent;
+  transition: border-color 0.3s var(--ease-lux), background-color 0.3s var(--ease-lux);
+}
+
+.qual-card-hover:hover {
+  border-left: 2px solid var(--accent-olive-light);
+}
+
+/* ============================================
+   16. CTA BANNER
+   Purpose: Handle border layout on small screens.
+   ============================================ */
+.cta-banner-center {
+  border-left: 1px solid rgba(255,255,255,0.2);
+  border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+@media (max-width: 768px) {
+  .cta-banner-center {
+    border-left: none;
+    border-right: none;
+    padding: 1rem 0 !important;
+  }
+}
+
+ /* Stacks service buttons vertically on small mobile devices */
+@media (max-width: 480px) {
+  .service-cta-group {
+    flex-direction: column;
+  }
+  .service-cta-group .btn-primary,
+  .service-cta-group .btn-outline {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* ============================================
+   17. SKIP LINK (Accessibility)
+   Purpose: Allows keyboard users to skip navigation.
+   ============================================ */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--space-sm);
+  background: var(--accent-olive-dark);
+  color: var(--white);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  z-index: 9999;
+  transition: top 0.3s var(--ease-lux);
+}
+
+.skip-link:focus {
+  top: var(--space-sm);
+}
+
+/* ============================================
+   18. REDUCED MOTION (Accessibility)
+   Purpose: Respects user motion preferences.
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   19. MOBILE OPTIMISATION
+   All rules below are mobile-only.
+   Desktop (1280px+) is never affected.
+   Last updated: 2026-05-17
+   ============================================ */
+
+/* --- HERO SECTIONS MOBILE — STACKED LAYOUT (wireframe) ---
+   On mobile the hero changes from an overlay layout
+   (text over image) to a stacked layout (image on top,
+   text below). The image div is pulled from absolute
+   positioning into normal flex flow.
+   -------------------------------------------------------- */
+@media (max-width: 768px) {
+  /* 1. Section: column stack, no min-height */
+  .hero-section {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    padding-top: 80px !important;
+    padding-bottom: 60px !important;
+    min-height: auto !important;
+    overflow: visible !important;
+  }
+
+  /* 2. Image container: from absolute overlay to flow block */
+  .hero-section > div:last-child {
+    position: relative !important;
+    width: 100% !important;
+    height: 320px !important;
+    top: auto !important;
+    right: auto !important;
+    left: auto !important;
+    order: -1;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+    z-index: 0;
+  }
+
+  /* Hero gradient — soft premium fade, preserves more image */
+  .hero-section > div:last-child > div:last-child {
+    background: linear-gradient(
+      to top,
+      var(--bg-color) 0%,
+      rgba(244, 239, 233, 0.6) 10%,
+      rgba(244, 239, 233, 0.2) 20%,
+      transparent 25%
+    ) !important;
+  }
+
+  /* Show full head/top — anchor to top of image */
+  .hero-section > div:last-child > div:first-child {
+    background-position: center top !important;
+  }
+
+  /* 3. Container: ensure it sits below image */
+  .hero-section > .container {
+    order: 1;
+    z-index: 1;
+  }
+
+  /* 4. Text content: centered, clean padding, no overlay */
+  .hero-content {
+    flex-basis: 100% !important;
+    max-width: 100% !important;
+    padding: var(--space-md) 1.5rem !important;
+    text-align: center !important;
+    background: none !important;
+    border-radius: 0 !important;
+  }
+
+  /* 5. H1: reduced for mobile, merge with subtitle */
+  .hero-content h1 {
+    font-size: 2.2rem !important;
+    margin-bottom: 0.3rem !important;
+    line-height: 1.25 !important;
+    text-align: center !important;
+  }
+
+  /* 6. Body copy: centered, readable width */
+  .hero-content p {
+    max-width: 100% !important;
+    font-size: 1rem !important;
+    margin-bottom: 1.5rem !important;
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* 7. CTA buttons: full-width, stacked, 44px+ touch */
+  .hero-content > div:last-child {
+    gap: 0.8rem !important;
+    margin-top: 0 !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    width: 100%;
+  }
+
+  .hero-content .btn-primary,
+  .hero-content .btn-outline {
+    width: 100% !important;
+    text-align: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+}
+
+/* --- ABOUT SECTION MOBILE (C2) ---
+   Targets: AboutSection.js (homepage)
+   Selector: #ueber-mich div[style] > div (text column)
+   Uses parent #ueber-mich to scope precisely.
+   !important needed to override inline padding: 5rem 4rem.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  #ueber-mich > .container > div > div:last-child {
+    padding: 2.5rem 1.5rem !important;
+  }
+
+  #ueber-mich > .container > div > div:first-child {
+    min-height: 280px !important;
+  }
+}
+
+/* --- ABOUT CONTENT PAGE MOBILE (C3, C4) ---
+   Targets: AboutContent.js (Über Mich page)
+   .cinematic-image-wrapper for image containers.
+   !important to override inline minHeight: 500px
+   and padding: 5rem 4rem.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .cinematic-image-wrapper {
+    min-height: 280px !important;
+    max-height: 280px;
+    flex-basis: 100% !important;
+  }
+
+  /* Text columns next to cinematic images */
+  .cinematic-image-wrapper + div,
+  .cinematic-image-wrapper ~ div:last-child {
+    padding: 2.5rem 1.5rem !important;
+    flex-basis: 100% !important;
+  }
+}
+
+/* Approach features row — prevent horizontal overflow (C4) */
+@media (max-width: 480px) {
+  .cinematic-image-wrapper ~ div:last-child > div:last-child > div:last-child {
+    flex-wrap: wrap !important;
+    gap: var(--space-sm) !important;
+    justify-content: center !important;
+  }
+
+  .cinematic-image-wrapper ~ div:last-child > div:last-child > div:last-child > div {
+    flex: 0 0 calc(50% - 0.5rem) !important;
+    align-items: center !important;
+  }
+}
+
+/* --- CONTACT FOOTER MOBILE (C5) ---
+   Targets: ContactFooter.js
+   Footer #kontakt > .container > div (flex row).
+   !important to override inline gap: 4rem,
+   alignSelf: flex-start, display: inline-flex.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  #kontakt > .container > div {
+    flex-direction: column !important;
+    gap: var(--space-lg) !important;
+  }
+
+  /* WhatsApp button — full width */
+  #kontakt > .container > div > div:first-child a[href*="wa.me"] {
+    width: 100% !important;
+    justify-content: center !important;
+    display: flex !important;
+  }
+
+  /* Form submit button — full width */
+  #kontakt .btn-primary {
+    width: 100% !important;
+    align-self: stretch !important;
+  }
+}
+
+/* --- GALLERY HERO MOBILE (C6) --- */
+@media (max-width: 768px) {
+  .gallery-hero {
+    justify-content: center !important;
+    min-height: 300px !important;
+  }
+
+  .gallery-hero > .container {
+    text-align: center !important;
+    padding: var(--space-md) !important;
+  }
+
+  .gallery-hero h1,
+  .gallery-hero p {
+    text-align: center !important;
+  }
+
+  .gallery-hero p {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* --- LOCATION MOBILE (M7) ---
+   Targets: Location.js
+   !important to override inline gap: 4rem,
+   minHeight: 350px, borderRadius.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .praxisstandort__map-wrapper {
+    height: 220px !important;
+    min-height: 220px !important;
+  }
+  .praxisstandort__map-wrapper iframe {
+    min-height: 220px !important;
+  }
+}
+
+/* --- PRACTICE GALLERY MOBILE (M8) ---
+   Targets: PracticeGallery.js horizontal scroll
+   items. Cannot directly target (no className on
+   items), but the parent flex container is inside
+   #fotogalerie > .container.
+   -------------------------------------------- */
+@media (max-width: 480px) {
+  #fotogalerie > .container > div > div > div > div {
+    min-width: 180px !important;
+    height: 260px !important;
+  }
+}
+
+/* --- SERVICES OVERVIEW MOBILE (M9) ---
+   Targets: ServicesOverview.js
+   .services-outer-panel has className.
+   Service modal overrides use .hide-scrollbar parent.
+   -------------------------------------------- */
+@media (max-width: 480px) {
+  .services-outer-panel {
+    padding: 3rem 1.5rem !important;
+    border-radius: 20px 20px 0 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* Modal text column */
+  .hide-scrollbar {
+    padding: 2rem 1.5rem !important;
+  }
+}
+
+/* --- SERVICE PAGE CONTENT MOBILE (M10) ---
+   Targets: All service page two-column sections.
+   These use inline flex with padding: 4rem/5rem.
+   Scoped via .section-padding > .container layout.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .section-padding > .container > div {
+    gap: var(--space-md) !important;
+  }
+}
+
+/* --- QUALIFICATIONS GRID MOBILE (M11) --- */
+@media (max-width: 768px) {
+  .qualifications-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .qualifications-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .qual-card {
+    padding: 1.5rem;
+  }
+}
+
+/* --- PHOTO GALLERY LIGHTBOX MOBILE (M12) ---
+   Targets: PhotoGallery.js lightbox prev/next.
+   These are inline-styled buttons, but we can
+   use broad touch-target enforcement.
+   -------------------------------------------- */
+@media (max-width: 768px) {
+  .masonry-grid + div button {
+    min-width: 48px !important;
+    min-height: 48px !important;
+  }
+}
+
+/* --- TYPOGRAPHY MOBILE (m1) --- */
+@media (max-width: 480px) {
+  .section-subtitle {
+    letter-spacing: 0.1em;
+  }
+}
+
+/* --- BUTTONS MOBILE (m2) --- */
+@media (max-width: 480px) {
+  .btn-primary,
+  .btn-outline {
+    padding: 1rem 2rem;
+    font-size: 0.75rem;
+    min-height: 44px;
+  }
+}
+
+/* --- SPACING MOBILE (m3) --- */
+@media (max-width: 480px) {
+  .section-padding {
+    padding: 3.5rem 0 !important;
+  }
+}
+
+/* --- CONTAINER MOBILE (m4) --- */
+@media (max-width: 480px) {
+  .container {
+    padding-left: var(--space-sm) !important;
+    padding-right: var(--space-sm) !important;
+  }
+}
+
+/* --- NAVBAR MOBILE MENU REDESIGN --- */
+@media (max-width: 768px) {
+  /* Overlay adjustment for dynamic scrolling & centered flex */
+  .mobile-menu-overlay {
+    overflow-y: auto !important;
+    padding: 6rem 1.5rem 3rem 1.5rem !important;
+    justify-content: flex-start !important;
+    gap: 0 !important;
+  }
+
+  /* Inner wrapper to contain animations and align links */
+  .mobile-menu-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 1.2rem;
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 1] Subtle brand noise texture */
+  .mobile-menu-overlay::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.035'/%3E%3C/svg%3E");
+    opacity: 0.8;
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 2] Center-aligned horizontal separators */
+  .mobile-nav-divider {
+    width: 40%;
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.06);
+    margin: 0.2rem auto;
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 3] Left-border nested group style */
+  .mobile-nav-group {
+    border-left: 2px solid var(--accent-olive-light);
+    padding-left: var(--space-sm);
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.6rem;
+  }
+
+  .mobile-nav-link-static {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    color: var(--text-primary);
+    opacity: 0.5;
+    margin-bottom: 0.2rem;
+    text-transform: capitalize;
+  }
+
+  .mobile-nav-sublink {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    text-decoration: none;
+    transition: color 0.3s var(--ease-lux);
+  }
+
+  .mobile-nav-sublink:active {
+    color: var(--accent-olive-dark);
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 4] Sizing and spacing for primary CTA */
+  .mobile-menu-cta {
+    width: 100% !important;
+    max-width: 280px !important;
+    margin-top: var(--space-lg) !important;
+    text-align: center;
+    justify-content: center;
+    min-height: 44px;
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 5] Language switcher styles */
+  .mobile-lang-switcher {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    margin-top: var(--space-md);
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+  }
+
+  .mobile-lang-btn-opt {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.2rem 0.5rem;
+    font-family: inherit;
+    font-size: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    transition: color 0.3s var(--ease-lux);
+  }
+
+  .mobile-lang-btn-opt.active {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .mobile-lang-btn-opt:not(.active) {
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .mobile-lang-separator {
+    color: rgba(0, 0, 0, 0.15);
+    font-weight: 300;
+  }
+
+  /* [MOBILE MENU IMPROVEMENT 6] Close toggle alignment and touch targets */
+  .mobile-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+    padding: 0 !important;
+    opacity: 0.6;
+    transition: opacity 0.3s var(--ease-lux) !important;
+    background: none;
+    border: none;
+  }
+
+  .mobile-toggle:hover,
+  .mobile-toggle:focus {
+    opacity: 1 !important;
+  }
+}
+
+/* ============================================
+   END MOBILE OPTIMISATION
+   ============================================ */

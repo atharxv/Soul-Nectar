@@ -1,0 +1,285 @@
+"use client";
+import { useState, useEffect, useRef } from "react";
+import FadeIn from "./FadeIn";
+import { motion, AnimatePresence } from "framer-motion";
+import { X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+
+import { useLanguage } from "@/context/LanguageContext";
+
+export default function ServicesOverview() {
+  const { t } = useLanguage();
+  const [activeId, setActiveId] = useState(null);
+  const modalRef = useRef(null);
+
+  useEffect(() => {
+    if (activeId && modalRef.current) {
+      const isMobileSize = window.innerWidth < 768;
+      
+      // Smoothly scroll the container into view
+      modalRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: isMobileSize ? 'start' : 'center'
+      });
+
+      // Luxurious secondary correction for the fixed Navbar
+      const timeoutId = setTimeout(() => {
+        window.scrollBy({
+          top: isMobileSize ? -100 : -40,
+          behavior: 'smooth'
+        });
+      }, 500);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [activeId]);
+
+  const services = [
+    {
+      id: "heilpraktikerin",
+      title: t('services.items.0.title'),
+      description: t('services.items.0.description'),
+      image: "/practice-room-3.jpg",
+      route: "/heilpraktiker-aichach"
+    },
+    {
+      id: "psychotherapie",
+      title: t('services.items.1.title'),
+      description: t('services.items.1.description'),
+      bullets: t('services.items.1.bullets'),
+      image: "/practice-room-4.jpg",
+      route: "/psychotherapie-aichach"
+    },
+    {
+      id: "yogatherapie",
+      title: t('services.items.2.title'),
+      description: t('services.items.2.description'),
+      bullets: t('services.items.2.bullets'),
+      image: "/practice-room-1.jpg",
+      route: "/yogatherapie-aichach"
+    },
+    {
+      id: "yoga",
+      title: t('services.items.3.title'),
+      description: t('services.items.3.description'),
+      image: "/practice-room-2.jpg",
+      route: "/yoga-aichach"
+    }
+  ];
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+
+  const activeIndex = services.findIndex(s => s.id === activeId);
+  const activeService = activeIndex !== -1 ? services[activeIndex] : null;
+
+  const handleSmoothScroll = (e) => {
+    e.preventDefault();
+    const target = document.getElementById('kontakt');
+    if (!target) return;
+
+    const navbarHeight = 80;
+    const extraPadding = 40;
+    const targetPosition = target.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = targetPosition - navbarHeight - extraPadding;
+
+    const startPosition = window.scrollY;
+    const distance = offsetPosition - startPosition;
+    const duration = 1200; // 1.2 seconds for luxurious slow scroll
+    let start = null;
+
+    // Premium cinematic easing (easeInOutQuart)
+    const easeInOutQuart = (time, begin, change, duration) => {
+      if ((time /= duration / 2) < 1) return change / 2 * time * time * time * time + begin;
+      return -change / 2 * ((time -= 2) * time * time * time - 2) + begin;
+    };
+
+    const animation = (currentTime) => {
+      if (start === null) start = currentTime;
+      const timeElapsed = currentTime - start;
+      const run = easeInOutQuart(timeElapsed, startPosition, distance, duration);
+      window.scrollTo(0, run);
+      if (timeElapsed < duration) requestAnimationFrame(animation);
+    };
+
+    requestAnimationFrame(animation);
+  };
+
+  // Dynamic positioning for the content-driven modal overlay
+  let overlayPosition = {};
+  if (isMobile) {
+    overlayPosition = { top: "2vh", left: "2%", width: "96%", bottom: "auto" };
+  } else {
+    if (activeIndex === 0) overlayPosition = { top: 0, left: 0, width: "100%" };
+    else if (activeIndex === 1) overlayPosition = { top: 0, right: 0, width: "100%" };
+    else if (activeIndex === 2) overlayPosition = { bottom: 0, left: 0, width: "100%" };
+    else if (activeIndex === 3) overlayPosition = { bottom: 0, right: 0, width: "100%" };
+  }
+
+  return (
+    <section id="services" className="section-padding" style={{ backgroundColor: "var(--bg-color)" }}>
+      <div className="container" style={{ textAlign: "center", position: "relative" }}>
+        
+        <FadeIn>
+          <span className="section-subtitle">{t('services.subtitle')}</span>
+        </FadeIn>
+        
+        <div className="services-outer-panel" style={{
+          backgroundColor: "var(--accent-olive-light)",
+          borderRadius: "40px 40px 0 0",
+          padding: "5rem 3rem",
+          marginTop: "2rem",
+          position: "relative"
+        }}>
+          <FadeIn>
+            <h2 style={{ color: "var(--bg-card)", marginBottom: "4rem", fontSize: "2.8rem", textAlign: "left" }}>{t('services.title')}</h2>
+          </FadeIn>
+          
+          {/* STATIC BACKGROUND GRID */}
+          <div className="services-grid" style={{
+            display: "grid",
+            gridTemplateColumns: isMobile ? "1fr" : "repeat(2, 1fr)",
+            gap: "2.5rem",
+            position: "relative"
+          }}>
+            {services.map((service, index) => {
+              const isSelected = activeId === service.id;
+              
+              return (
+                <div key={service.id} className="service-slot" style={{ position: "relative" }}>
+                  
+                  {/* PREVIEW CARD */}
+                  <motion.div 
+                    layoutId={`card-${service.id}`}
+                    onClick={() => setActiveId(isSelected ? null : service.id)}
+                    animate={{ 
+                      scale: activeId && !isSelected ? 0.95 : 1, 
+                      opacity: activeId && !isSelected ? 0.5 : (isSelected ? 0 : 1),
+                      filter: activeId && !isSelected ? "blur(2px)" : "blur(0px)"
+                    }}
+                    transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                    style={{
+                      backgroundColor: "var(--bg-card)",
+                      padding: "2.5rem",
+                      borderRadius: "12px",
+                      height: "100%",
+                      display: "flex",
+                      flexDirection: "column",
+                      textAlign: "left",
+                      cursor: "pointer",
+                      boxShadow: "0 4px 20px rgba(0,0,0,0.02)"
+                    }}
+                    className="preview-card"
+                    whileHover={!isSelected ? { y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.06)" } : {}}
+                  >
+                    <motion.div layoutId={`img-${service.id}`} style={{ width: "100%", height: "240px", marginBottom: "2rem", borderRadius: "8px", overflow: "hidden", position: "relative" }}>
+                      <Image src={service.image} alt={service.title} fill sizes="(max-width: 768px) 100vw, 25vw" style={{ objectFit: "cover", transition: "transform 0.8s var(--ease-lux)" }} className="preview-img" />
+                    </motion.div>
+                    <motion.h3 layoutId={`title-${service.id}`} style={{ fontSize: "1.6rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{service.title}</motion.h3>
+                    <motion.p layoutId={`desc-${service.id}`} style={{ color: "var(--text-secondary)", fontSize: "1rem" }}>
+                      {service.description.length > 110 ? `${service.description.substring(0, 110)}...` : service.description}
+                    </motion.p>
+                  </motion.div>
+                </div>
+              );
+            })}
+
+            {/* ELEVATED FOREGROUND OVERLAY */}
+            <AnimatePresence>
+              {activeId && (
+                <div 
+                  ref={modalRef}
+                  style={{ position: "absolute", zIndex: 20, pointerEvents: "none", ...overlayPosition }}
+                >
+                  <motion.div
+                    layoutId={`card-${activeId}`}
+                    style={{
+                      backgroundColor: "var(--bg-card)",
+                      borderRadius: "24px",
+                      width: "100%",
+                      height: "auto",
+                      maxHeight: isMobile ? "90vh" : "85vh",
+                      display: "flex",
+                      flexDirection: isMobile ? "column" : "row",
+                      overflow: "hidden", 
+                      pointerEvents: "auto",
+                      boxShadow: "0 30px 80px rgba(0,0,0,0.15)",
+                      border: "1px solid rgba(0,0,0,0.03)",
+                      position: "relative"
+                    }}
+                  >
+                    <button 
+                      onClick={() => setActiveId(null)} 
+                      aria-label={t('services.ariaClose')}
+                      style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 30, boxShadow: "0 4px 10px rgba(0,0,0,0.05)", transition: "transform 0.3s var(--ease-lux)" }} 
+                      onMouseEnter={(e) => e.currentTarget.style.transform = "rotate(90deg)"} 
+                      onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
+                    >
+                      <X size={20} />
+                    </button>
+
+                    {/* CLEAN EDITORIAL SPLIT LAYOUT */}
+                    <div style={{ flex: "1 1 55%", minWidth: "300px", padding: "4rem 3.5rem", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflowY: "auto" }} className="hide-scrollbar">
+                      <motion.h3 layoutId={`title-${activeId}`} style={{ fontSize: "2.4rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{activeService.title}</motion.h3>
+                      <motion.p layoutId={`desc-${activeId}`} style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "2rem" }}>
+                        {activeService.description}
+                      </motion.p>
+                      
+                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ delay: 0.15 }} style={{ display: "flex", flexDirection: "column" }}>
+                        {activeService.bullets && (
+                          <ul style={{ listStyle: "none", padding: 0, marginBottom: "2rem" }}>
+                            {activeService.bullets.map((b, i) => (
+                              <li key={i} style={{ display: "flex", gap: "1rem", marginBottom: "0.8rem", color: "var(--text-secondary)", fontSize: "0.95rem" }}>
+                                <span style={{ color: "var(--accent-olive-light)", marginTop: "0.2rem" }}>—</span> {b}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                        {!activeService.bullets && <div style={{ height: "1rem" }} />}
+                        <div className="service-cta-group" style={{ display: "flex", gap: "var(--space-sm)", flexWrap: "wrap", paddingBottom: "2rem" }}>
+                          {/* PRIMARY CTA */}
+                          <a href="#kontakt" onClick={handleSmoothScroll} className="btn-primary" style={{ backgroundColor: "var(--accent-olive-dark)", padding: "1rem 2.5rem", fontSize: "0.9rem" }}>
+                            {t('services.btn_book')}
+                          </a>
+                          
+                          {/* SECONDARY CTA */}
+                          {activeService.route && (
+                            <Link href={activeService.route} className="btn-outline" style={{ padding: "1rem 2.5rem", fontSize: "0.9rem" }}>
+                              {t('services.btn_more')}
+                            </Link>
+                          )}
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* IMAGE COLUMN */}
+                    <motion.div 
+                      layoutId={`img-${activeId}`} 
+                      style={{ 
+                        flex: isMobile ? "0 0 280px" : "1 1 45%", 
+                        minWidth: isMobile ? "100%" : "300px", 
+                        position: "relative", 
+                        borderLeft: isMobile ? "none" : "1px solid rgba(0,0,0,0.06)",
+                        borderTop: isMobile ? "1px solid rgba(0,0,0,0.06)" : "none",
+                        order: isMobile ? 2 : 1
+                      }}
+                    >
+                      <Image src={activeService.image} alt={activeService.title} fill sizes="(max-width: 1024px) 100vw, 45vw" style={{ objectFit: "cover" }} />
+                    </motion.div>
+
+                  </motion.div>
+                </div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
