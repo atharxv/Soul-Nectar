@@ -50,7 +50,7 @@ export default function Location() {
               <div className="praxisstandort__map-wrapper">
                 {mapLoaded ? (
                   <iframe
-                    src="https://maps.google.com/maps?q=Walchenstr.+33,+86551+Aichach&output=embed&z=15"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2632.793740263635!2d11.10903337651663!3d48.46889267126135!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x479e8c4e5108034b%3A0x6d9d1c9c417c805a!2sWalchenstra%C3%9Fe%2033%2C%2086551%20Aichach%2C%20Germany!5e0!3m2!1sen!2sde!4v1715951800000!5m2!1sen!2sde"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}

@@ -307,14 +307,14 @@ export default function Navbar() {
                 </Link>
               </motion.div>
 
-              {/* [MOBILE MENU IMPROVEMENT 4] Primary CTA Button linking to /termine-kontakt */}
+              {/* [MOBILE MENU IMPROVEMENT 4] Primary CTA Button linking to /#kontakt */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1], delay: 0.45 }}
                 style={{ width: "100%", display: "flex", justifyContent: "center" }}
               >
-                <Link href="/termine-kontakt" className="btn-primary mobile-menu-cta" onClick={() => setIsOpen(false)}>
+                <Link href="/#kontakt" className="btn-primary mobile-menu-cta" onClick={() => setIsOpen(false)}>
                   {t('nav.book')}
                 </Link>
               </motion.div>
