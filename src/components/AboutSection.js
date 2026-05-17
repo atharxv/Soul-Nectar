@@ -37,7 +37,7 @@ export default function AboutSection() {
           <div style={{
             flex: "1 1 400px",
             minHeight: "400px",
-            backgroundImage: "url('/practice-room-2.jpg')",
+            backgroundImage: "url('/nicole-main.png')",
             backgroundSize: "cover",
             backgroundPosition: "center",
             position: "relative"
