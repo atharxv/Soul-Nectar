@@ -308,9 +308,9 @@ export default function HeilpraktikerContent() {
               <div className="cinematic-image" style={{
                 position: "absolute",
                 top: 0, left: 0, width: "100%", height: "100%",
-                backgroundImage: "url('/practice-room-3.jpg')",
+                backgroundImage: "url('/nicole-main.png')",
                 backgroundSize: "cover",
-                backgroundPosition: "center 20%",
+                backgroundPosition: "center",
               }} />
             </div>
             
