@@ -5,6 +5,7 @@ import { useState } from "react";
 import FadeIn from "./FadeIn";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+import { TopographicBackground } from "./DecorativePatterns";
 
 export default function ContactFooter() {
   const { t } = useLanguage();
@@ -39,6 +40,9 @@ export default function ContactFooter() {
 
   return (
     <footer id="kontakt" className="section-padding" style={{ backgroundColor: "var(--bg-footer)", color: "var(--white)" }}>
+      {/* Topographic repeating pattern overlay */}
+      <TopographicBackground variant="c" instanceId="footer" />
+
       <div className="container">
         <div style={{
           display: "flex",

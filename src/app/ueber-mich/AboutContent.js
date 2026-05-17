@@ -3,6 +3,7 @@
 import FadeIn from "@/components/FadeIn";
 import { useLanguage } from "@/context/LanguageContext";
 import Image from "next/image";
+import { BotanicalIllustration } from "@/components/DecorativePatterns";
 
 export default function AboutContent() {
   const { t } = useLanguage();
@@ -11,6 +12,12 @@ export default function AboutContent() {
     <>
       {/* 1. STORY / INTRO SECTION (Image Left, Text Right) */}
       <section className="section-padding" style={{ backgroundColor: "var(--bg-card)", paddingTop: "160px" }}>
+        {/* Botanical Illustration: Olive Branch */}
+        <BotanicalIllustration 
+          variant="olive" 
+          className="botanical-illust--mirrored hide-mobile" 
+          style={{ bottom: "0", left: "-15px", opacity: 0.07, transform: "rotate(-20deg) scaleX(-1)" }} 
+        />
         <div className="container">
           <div style={{
             display: "flex",

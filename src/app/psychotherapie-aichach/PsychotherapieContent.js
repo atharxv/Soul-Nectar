@@ -4,6 +4,7 @@ import FadeIn from "@/components/FadeIn";
 import FAQAccordion from "@/components/FAQAccordion";
 import Location from "@/components/Location";
 import { useLanguage } from "@/context/LanguageContext";
+import { TopographicBackground, BotanicalIllustration } from "@/components/DecorativePatterns";
 
 export default function PsychotherapieContent() {
   const { t } = useLanguage();
@@ -21,6 +22,15 @@ export default function PsychotherapieContent() {
         overflow: "hidden",
         backgroundColor: "var(--bg-card)"
       }}>
+        {/* Topographic Contour Background */}
+        <TopographicBackground variant="b" instanceId="hero-psychotherapie" />
+
+        {/* Botanical Illustration: Fern Frond */}
+        <BotanicalIllustration 
+          variant="fern" 
+          className="hide-mobile" 
+          style={{ bottom: "-20px", right: "-10px", opacity: 0.08, transform: "rotate(15deg)" }} 
+        />
         <div className="container" style={{ 
           display: "flex", 
           flexWrap: "wrap",

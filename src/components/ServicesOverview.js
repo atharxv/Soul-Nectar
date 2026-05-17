@@ -7,6 +7,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { useLanguage } from "@/context/LanguageContext";
+import { TopographicBackground, BotanicalIllustration } from "./DecorativePatterns";
 
 export default function ServicesOverview() {
   const { t } = useLanguage();
@@ -137,6 +138,16 @@ export default function ServicesOverview() {
           marginTop: "2rem",
           position: "relative"
         }}>
+          {/* Topographic repeating pattern overlay */}
+          <TopographicBackground variant="a" instanceId="services-overview" />
+
+          {/* Decorative Botanical Leaf Stem */}
+          <BotanicalIllustration 
+            variant="leaf" 
+            className="hide-mobile" 
+            style={{ top: "20px", right: "30px", opacity: 0.10, transform: "rotate(20deg)" }} 
+          />
+
           <FadeIn>
             <h2 style={{ color: "var(--bg-card)", marginBottom: "4rem", fontSize: "2.8rem", textAlign: "left" }}>{t('services.title')}</h2>
           </FadeIn>

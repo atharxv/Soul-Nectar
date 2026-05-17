@@ -1342,3 +1342,73 @@ button {
 /* ============================================
    END MOBILE OPTIMISATION
    ============================================ */
+
+/* ============================================
+   DECORATIVE LAYERS (TOPOGRAPHY & BOTANICALS)
+   ============================================ */
+
+/* Reusable positioning overlays */
+.hero-section,
+.section-padding,
+.services-outer-panel,
+footer {
+  position: relative;
+}
+
+/* 1. Topographic repeating background layers */
+.topo-bg-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* 2. Hand-drawn botanical line art elements */
+.botanical-illust {
+  pointer-events: none;
+  z-index: 0;
+  transition: transform 1.5s var(--ease-lux), opacity 0.8s var(--ease-lux);
+}
+
+/* Hover dynamic micro-animations for botanical assets */
+.hero-section:hover .botanical-illust,
+.section-padding:hover .botanical-illust,
+.services-outer-panel:hover .botanical-illust {
+  transform: rotate(18deg) scale(1.03) !important;
+}
+
+/* Mirror illustration adjustment for balanced visual layouts */
+.botanical-illust--mirrored:hover {
+  transform: rotate(-18deg) scaleX(-1) scale(1.03) !important;
+}
+
+/* 3. Responsive mobile handling (scale & opacity adjustments) */
+@media (max-width: 768px) {
+  .botanical-illust {
+    transform: scale(0.65) !important;
+    opacity: 0.55 !important;
+  }
+}
+
+/* Direct mobile collision hide rules for narrow stacked layouts */
+.botanical-illust.hide-mobile {
+  display: none;
+}
+
+@media (min-width: 769px) {
+  .botanical-illust.hide-mobile {
+    display: block;
+  }
+}
+
+/* 4. Strict z-index stacking layers: All page/section content sits strictly at z-index: 1 or above */
+.hero-section > *:not(.topo-bg-layer):not(.botanical-illust),
+.services-outer-panel > *:not(.topo-bg-layer):not(.botanical-illust),
+.section-padding > *:not(.topo-bg-layer):not(.botanical-illust),
+footer > *:not(.topo-bg-layer):not(.botanical-illust) {
+  position: relative;
+  z-index: 1;
+}

@@ -1,11 +1,18 @@
 "use client";
 import FadeIn from "./FadeIn";
 import { useLanguage } from "@/context/LanguageContext";
+import { BotanicalIllustration } from "./DecorativePatterns";
 
 export default function AboutSection() {
   const { t } = useLanguage();
   return (
     <section id="ueber-mich" className="section-padding" style={{ backgroundColor: "var(--white)", scrollMarginTop: "120px" }}>
+      {/* Botanical Illustration: Fern Frond */}
+      <BotanicalIllustration 
+        variant="fern" 
+        className="hide-mobile" 
+        style={{ top: "-10px", left: "-10px", opacity: 0.07, transform: "rotate(-10deg)" }} 
+      />
       <div className="container" style={{ textAlign: "center" }}>
         <FadeIn>
           <span className="section-subtitle">{t('about.subtitle')}</span>

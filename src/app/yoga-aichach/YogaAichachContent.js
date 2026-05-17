@@ -4,6 +4,7 @@ import FadeIn from "@/components/FadeIn";
 import Location from "@/components/Location";
 import { useLanguage } from "@/context/LanguageContext";
 import Image from "next/image";
+import { TopographicBackground, BotanicalIllustration } from "@/components/DecorativePatterns";
 
 const iconMap = [
   "gentle-movement",
@@ -28,6 +29,15 @@ export default function YogaAichachContent() {
         overflow: "hidden",
         backgroundColor: "var(--bg-card)"
       }}>
+        {/* Topographic Contour Background */}
+        <TopographicBackground variant="b" instanceId="hero-yoga" />
+
+        {/* Botanical Illustration: Olive Branch */}
+        <BotanicalIllustration 
+          variant="olive" 
+          className="hide-mobile" 
+          style={{ bottom: "-20px", right: "-10px", opacity: 0.08, transform: "rotate(15deg)" }} 
+        />
         <div className="container" style={{ 
           display: "flex", 
           flexWrap: "wrap",

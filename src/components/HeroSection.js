@@ -1,6 +1,7 @@
 "use client";
 import FadeIn from "./FadeIn";
 import { useLanguage } from "@/context/LanguageContext";
+import { TopographicBackground, BotanicalIllustration } from "./DecorativePatterns";
 
 export default function HeroSection() {
   const { t } = useLanguage();
@@ -14,6 +15,15 @@ export default function HeroSection() {
       paddingBottom: "100px",
       overflow: "hidden"
     }}>
+      {/* Topographic Contour Background */}
+      <TopographicBackground variant="b" instanceId="hero-home" />
+
+      {/* Botanical Illustration: Olive Branch */}
+      <BotanicalIllustration 
+        variant="olive" 
+        className="hide-mobile" 
+        style={{ bottom: "-20px", right: "-10px", opacity: 0.08, transform: "rotate(15deg)" }} 
+      />
       <div className="container" style={{ 
         display: "flex", 
         flexWrap: "wrap",
