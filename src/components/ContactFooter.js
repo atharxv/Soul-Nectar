@@ -5,7 +5,7 @@ import { useState } from "react";
 import FadeIn from "./FadeIn";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
-import { TopographicBackground } from "./DecorativePatterns";
+import { TopographicBackground, BotanicalIllustration } from "./DecorativePatterns";
 
 export default function ContactFooter() {
   const { t } = useLanguage();
@@ -42,6 +42,19 @@ export default function ContactFooter() {
     <footer id="kontakt" className="section-padding" style={{ backgroundColor: "var(--bg-footer)", color: "var(--white)" }}>
       {/* Topographic repeating pattern overlay */}
       <TopographicBackground variant="c" instanceId="footer" />
+
+      {/* Decorative Botanical Fern Frond on Dark background */}
+      <BotanicalIllustration 
+        variant="fern" 
+        className="hide-mobile" 
+        style={{ 
+          bottom: "30px", 
+          left: "40px", 
+          opacity: 0.14, 
+          transform: "rotate(-15deg)",
+          "--botanical-stroke": "var(--accent-olive-light)" 
+        }} 
+      />
 
       <div className="container">
         <div style={{

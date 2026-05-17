@@ -36,7 +36,7 @@ export default function YogatherapieContent() {
         <BotanicalIllustration 
           variant="pods" 
           className="hide-mobile" 
-          style={{ bottom: "-20px", right: "-10px", opacity: 0.08, transform: "rotate(15deg)" }} 
+          style={{ bottom: "-20px", right: "-10px", opacity: 0.18, transform: "rotate(15deg)" }} 
         />
         <div className="container" style={{
           display: "flex",

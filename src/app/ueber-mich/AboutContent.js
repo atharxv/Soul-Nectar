@@ -16,7 +16,7 @@ export default function AboutContent() {
         <BotanicalIllustration 
           variant="olive" 
           className="botanical-illust--mirrored hide-mobile" 
-          style={{ bottom: "0", left: "-15px", opacity: 0.07, transform: "rotate(-20deg) scaleX(-1)" }} 
+          style={{ bottom: "0", left: "-15px", opacity: 0.16, transform: "rotate(-20deg) scaleX(-1)" }} 
         />
         <div className="container">
           <div style={{
@@ -118,7 +118,13 @@ export default function AboutContent() {
       </section>
 
       {/* 3. QUALIFICATIONS SECTION */}
-      <section className="section-padding" style={{ backgroundColor: "var(--bg-color)" }}>
+      <section className="section-padding" style={{ backgroundColor: "var(--bg-color)", position: "relative", overflow: "hidden" }}>
+        {/* Botanical Illustration: Seed Pods */}
+        <BotanicalIllustration 
+          variant="pods" 
+          className="hide-mobile" 
+          style={{ bottom: "-30px", right: "-20px", opacity: 0.18, transform: "rotate(-10deg)" }} 
+        />
         <div className="container" style={{ maxWidth: "1000px", margin: "0 auto" }}>
           <FadeIn>
             <span className="section-subtitle" style={{ display: "block", marginBottom: "1rem", textAlign: "center" }}>{t('aboutPage.qualifications.subtitle')}</span>
@@ -188,7 +194,13 @@ export default function AboutContent() {
       </section>
 
       {/* 4. APPROACH SECTION (Text Left, Image Right) */}
-      <section className="section-padding" style={{ backgroundColor: "var(--bg-card)" }}>
+      <section className="section-padding" style={{ backgroundColor: "var(--bg-card)", position: "relative", overflow: "hidden" }}>
+        {/* Botanical Illustration: Leaf Stem */}
+        <BotanicalIllustration 
+          variant="leaf" 
+          className="hide-mobile" 
+          style={{ top: "-10px", left: "-15px", opacity: 0.16, transform: "rotate(15deg)" }} 
+        />
         <div className="container">
           <div style={{
             display: "flex",

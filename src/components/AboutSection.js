@@ -11,7 +11,13 @@ export default function AboutSection() {
       <BotanicalIllustration 
         variant="fern" 
         className="hide-mobile" 
-        style={{ top: "-10px", left: "-10px", opacity: 0.07, transform: "rotate(-10deg)" }} 
+        style={{ top: "-10px", left: "-10px", opacity: 0.16, transform: "rotate(-10deg)" }} 
+      />
+      {/* Second Botanical Illustration: Leaf Stem framing the section */}
+      <BotanicalIllustration 
+        variant="leaf" 
+        className="hide-mobile" 
+        style={{ bottom: "-20px", right: "20px", opacity: 0.15, transform: "rotate(25deg)" }} 
       />
       <div className="container" style={{ textAlign: "center" }}>
         <FadeIn>

@@ -145,7 +145,7 @@ export default function ServicesOverview() {
           <BotanicalIllustration 
             variant="leaf" 
             className="hide-mobile" 
-            style={{ top: "20px", right: "30px", opacity: 0.10, transform: "rotate(20deg)" }} 
+            style={{ top: "20px", right: "30px", opacity: 0.22, transform: "rotate(20deg)" }} 
           />
 
           <FadeIn>
