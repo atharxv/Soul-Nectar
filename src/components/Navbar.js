@@ -90,7 +90,7 @@ export default function Navbar() {
                 color: "var(--text-secondary)",
                 transition: "color 0.8s var(--ease-lux)"
               }}>
-                Therapy & Yoga
+                Therapie & Yoga
               </span>
             </div>
           </div>
@@ -111,7 +111,7 @@ export default function Navbar() {
               <ChevronDown size={14} className="nav-dropdown-icon" style={{ marginLeft: "4px" }} />
             </span>
             <div className="nav-dropdown-content">
-              <Link href="/heilpraktiker-aichach" className="nav-dropdown-item">{t('services.items.0.title')}</Link>
+              <Link href="/heilpraktikerin-aichach" className="nav-dropdown-item">{t('services.items.0.title')}</Link>
               <Link href="/psychotherapie-aichach" className="nav-dropdown-item">{t('services.items.1.title')}</Link>
               <Link href="/yogatherapie-aichach" className="nav-dropdown-item">{t('services.items.2.title')}</Link>
               <Link href="/yoga-aichach" className="nav-dropdown-item">{t('services.items.3.title')}</Link>
@@ -259,7 +259,7 @@ export default function Navbar() {
                 {/* [MOBILE MENU IMPROVEMENT 3] Left-border nested group style */}
                 <div className="mobile-nav-group">
                   <span className="mobile-nav-link-static">{t('nav.services')}</span>
-                  <Link href="/heilpraktiker-aichach" className="mobile-nav-sublink" onClick={() => setIsOpen(false)}>
+                  <Link href="/heilpraktikerin-aichach" className="mobile-nav-sublink" onClick={() => setIsOpen(false)}>
                     {t('services.items.0.title')}
                   </Link>
                   <Link href="/psychotherapie-aichach" className="mobile-nav-sublink" onClick={() => setIsOpen(false)}>

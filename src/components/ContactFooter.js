@@ -197,10 +197,98 @@ export default function ContactFooter() {
           textAlign: "center",
           color: "rgba(255,255,255,0.5)",
           fontSize: "0.8rem",
-          letterSpacing: "0.05em"
+          fontFamily: "var(--font-josefin)",
+          textTransform: "uppercase",
+          letterSpacing: "0.15em",
+          display: "flex",
+          flexDirection: "column",
+          gap: "0.75rem",
+          alignItems: "center"
         }}>
-          {t('footer.copyright').replace('{year}', new Date().getFullYear())}
+          {/* Copyright line — Legal words are real links */}
+          <div style={{ display: "flex", alignItems: "center", flexWrap: "wrap", justifyContent: "center" }}>
+            {(() => {
+              const full = t('footer.copyright').replace('{year}', new Date().getFullYear());
+              const parts = full.split(/(Impressum|Datenschutz|Imprint|Privacy Policy)/g);
+              
+              const linkStyle = {
+                color: "rgba(255,255,255,0.5)",
+                textDecoration: "none",
+                fontFamily: "var(--font-josefin)",
+                fontSize: "0.8rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                transition: "opacity 0.3s var(--ease-lux)"
+              };
+
+              return (
+                <>
+                  {parts.map((part, idx) => {
+                    if (part === 'Impressum' || part === 'Imprint') {
+                      return (
+                        <a 
+                          key={idx} 
+                          href="/impressum" 
+                          style={linkStyle}
+                          onMouseEnter={e => e.currentTarget.style.opacity = "1"}
+                          onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}
+                        >
+                          {part}
+                        </a>
+                      );
+                    }
+                    if (part === 'Datenschutz' || part === 'Privacy Policy') {
+                      return (
+                        <a 
+                          key={idx} 
+                          href="/datenschutz" 
+                          style={linkStyle}
+                          onMouseEnter={e => e.currentTarget.style.opacity = "1"}
+                          onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}
+                        >
+                          {part}
+                        </a>
+                      );
+                    }
+                    return <span key={idx}>{part}</span>;
+                  })}
+                  <span> | </span>
+                  <a 
+                    href="/cookie-einstellungen" 
+                    style={linkStyle}
+                    onMouseEnter={e => e.currentTarget.style.opacity = "1"}
+                    onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}
+                  >
+                    {t('footer.copyright').includes('Imprint') ? 'Cookie Settings' : 'Cookie Einstellungen'}
+                  </a>
+                </>
+              );
+            })()}
+          </div>
+
+          {/* Crafted by Luxury Method credit */}
+          <div>
+            <a
+              href="https://www.luxury-method.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                color: "rgba(255,255,255,0.5)",
+                textDecoration: "none",
+                fontFamily: "var(--font-josefin)",
+                fontSize: "0.8rem",
+                textTransform: "uppercase",
+                letterSpacing: "0.15em",
+                transition: "opacity 0.3s var(--ease-lux)"
+              }}
+              onMouseEnter={e => e.currentTarget.style.opacity = "1"}
+              onMouseLeave={e => e.currentTarget.style.opacity = "0.5"}
+            >
+              Crafted by Luxury Method
+            </a>
+          </div>
         </div>
+
       </div>
     </footer>
   );

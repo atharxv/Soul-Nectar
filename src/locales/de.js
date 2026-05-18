@@ -49,7 +49,7 @@ export const de = {
     items: [
       {
         id: "heilpraktikerin",
-        title: "Heilpraktiker Aichach",
+        title: "Heilpraktikerin Aichach",
         description: "Als Heilpraktikerin in Aichach verbinde ich therapeutische Kompetenz mit einem ganzheitlichen Blick auf Ihre Gesundheit. Die heilpraktische Begleitung ermöglicht individuelle Lösungsansätze jenseits standardisierter Verfahren. Gemeinsam betrachten wir nicht nur Symptome, sondern auch deren Ursachen, körperlich wie seelisch.",
       },
       {
@@ -106,11 +106,11 @@ export const de = {
   
   // Heilpraktiker Page
   heilpraktiker_page: {
-    hero_title: "Heilpraktiker Aichach:<br/>Ganzheitliche Begleitung<br/>für Körper und Seele",
+    hero_title: "Heilpraktikerin Aichach:<br/>Ganzheitliche Begleitung<br/>für Körper und Seele",
     hero_subtitle: "Heilpraktikerin Aichach: Ganzheitliche Begleitung",
     hero_desc: "Individuelle, achtsame und professionelle Unterstützung. Als Heilpraktikerin in Aichach begleite ich dich mit einem integrativen Ansatz, der psychotherapeutische Arbeit, körperorientierte Methoden und Yoga miteinander verbindet.",
     
-    meaning_title: "Was bedeutet Heilpraktiker?",
+    meaning_title: "Was bedeutet Heilpraktikerin?",
     meaning_desc1: "Der Schwerpunkt meiner Praxis liegt auf ganzheitlicher Begleitung bei emotionalen, psychosomatischen und persönlichen Herausforderungen.",
     meaning_desc2: "Mein Angebot als Heilpraktikerin in Aichach richtet sich an Menschen, die:",
     meaning_bullets: [
@@ -121,12 +121,12 @@ export const de = {
     ],
     meaning_desc3: "Meine heilpraktische Tätigkeit in Aichach ermöglicht eine individuelle und flexible Begleitung, ohne lange Wartezeiten.",
     
-    psycho_title: "Heilpraktiker Psychotherapie in Aichach",
-    psycho_desc: "Ein besonderer Schwerpunkt meiner Arbeit ist die Heilpraktiker Psychotherapie. Hier verbinde ich therapeutische Gesprächsarbeit mit körperorientierten Elementen.<br/><br/>Mehr Informationen findest du hier:",
-    psycho_link: "→ Heilpraktiker Psychotherapie Aichach",
+    psycho_title: "Heilpraktikerin Psychotherapie in Aichach",
+    psycho_desc: "Ein besonderer Schwerpunkt meiner Arbeit ist die Heilpraktikerin Psychotherapie. Hier verbinde ich therapeutische Gesprächsarbeit mit körperorientierten Elementen.<br/><br/>Mehr Informationen findest du hier:",
+    psycho_link: "→ Heilpraktikerin Psychotherapie Aichach",
     
     holistic_title: "Ganzheitlicher Ansatz: Körper, Atem und Bewegung",
-    holistic_desc1: "Neben der psychotherapeutischen Arbeit als Heilpraktiker integriere ich körperorientierte Verfahren sowie achtsame Bewegungsformen.<br/><br/>Mehr Informationen finden Sie hier:",
+    holistic_desc1: "Neben der psychotherapeutischen Arbeit als Heilpraktikerin integriere ich körperorientierte Verfahren sowie achtsame Bewegungsformen.<br/><br/>Mehr Informationen finden Sie hier:",
     holistic_link1: "→ Yogatherapie Aichach",
     holistic_link2: "→ Yoga Kurse in Aichach",
     holistic_desc2: "Durch die Verbindung von Gespräch, Körperwahrnehmung und Atemarbeit entsteht ein ganzheitlicher Raum für Stabilisierung und Entwicklung.<br/><br/>Die Sitzungen finden in ruhiger Atmosphäre in Aichach statt. Dauer und Frequenz richten sich nach deinem individuellen Anliegen.",
@@ -508,9 +508,34 @@ export const de = {
       links: [
         { text: "Yogatherapie in Aichach", url: "/yogatherapie-aichach" },
         { text: "Psychotherapie in Aichach", url: "/psychotherapie-aichach" },
-        { text: "Heilpraktiker in Aichach", url: "/heilpraktiker-aichach" }
+        { text: "Heilpraktikerin in Aichach", url: "/heilpraktikerin-aichach" }
       ],
       closing: "So entsteht ein ganzheitliches Angebot für Menschen, die Körper und Seele gleichermaßen stärken möchten."
     }
+  },
+  
+  // Cookie Banner
+  cookieBanner: {
+    message: "Diese Website verwendet Cookies. Weitere Informationen finden Sie in unserer",
+    accept: "Alle akzeptieren",
+    necessary: "Nur notwendige",
+    settings: "Einstellungen"
+  },
+  
+  // Cookie Page
+  cookiePage: {
+    title: "Cookie-Richtlinie",
+    intro: "Diese Website verwendet Cookies. Sie können weitere Informationen zu den verwendeten Cookie-Typen finden und einzelne Cookies in den jeweiligen Kategorien aktivieren. Sie können Ihre Einstellungen jederzeit über den Link im Footer dieser Website anpassen.",
+    necessary_title: "Unbedingt erforderlich",
+    necessary_desc: "Unbedingt erforderliche Cookies gewährleisten Funktionen, ohne die diese Website nicht wie vorgesehen genutzt werden kann. Da diese Cookies unbedingt erforderlich sind, können sie nicht deaktiviert werden. Diese Cookies werden ausschließlich von dieser Website verwendet und sind daher First-Party-Cookies. Das bedeutet, dass alle in den Cookies gespeicherten Informationen an diese Website zurückgesendet werden.",
+    functional_title: "Funktionell",
+    functional_desc: "Funktionelle Cookies ermöglichen es dieser Website, bestimmte Funktionen bereitzustellen und bereits eingegebene Informationen (z. B. registrierter Name oder Sprachauswahl) zu speichern, um Ihnen verbesserte und personalisiertere Funktionen anzubieten.",
+    marketing_title: "Marketing / Third Party",
+    marketing_desc: "Marketing- / Third-Party-Cookies stammen unter anderem von externen Werbeunternehmen und werden verwendet, um Informationen über die von Ihnen besuchten Websites zu sammeln, um z. B. zielgerichtete Werbung für Sie zu erstellen.",
+    performance_title: "Performance",
+    performance_desc: "Performance-Cookies sammeln Informationen darüber, wie eine Webseite genutzt wird. Wir verwenden sie, um besser zu verstehen, wie unsere Webseiten genutzt werden, um deren Attraktivität, Inhalt und Funktionalität zu verbessern.",
+    no_cookies: "Keine Cookies in dieser Kategorie",
+    save: "Einstellungen speichern",
+    saved: "Einstellungen gespeichert"
   }
 };

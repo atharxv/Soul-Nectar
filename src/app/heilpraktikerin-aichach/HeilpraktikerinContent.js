@@ -5,7 +5,7 @@ import Location from "@/components/Location";
 import { useLanguage } from "@/context/LanguageContext";
 import { TopographicBackground, BotanicalIllustration } from "@/components/DecorativePatterns";
 
-export default function HeilpraktikerContent() {
+export default function HeilpraktikerinContent() {
   const { t } = useLanguage();
 
   return (
@@ -22,7 +22,7 @@ export default function HeilpraktikerContent() {
         backgroundColor: "var(--bg-card)"
       }}>
         {/* Topographic Contour Background */}
-        <TopographicBackground variant="b" instanceId="hero-heilpraktiker" />
+        <TopographicBackground variant="b" instanceId="hero-heilpraktikerin" />
 
         {/* Botanical Illustration: Leaf Stem */}
         <BotanicalIllustration 
@@ -104,7 +104,7 @@ export default function HeilpraktikerContent() {
         </div>
       </section>
 
-      {/* Was bedeutet Heilpraktiker? */}
+      {/* Was bedeutet Heilpraktikerin? */}
       <section className="section-padding" style={{ backgroundColor: "var(--bg-color)" }}>
         <div className="container" style={{ maxWidth: "800px", margin: "0 auto" }}>
           <FadeIn>
@@ -146,7 +146,7 @@ export default function HeilpraktikerContent() {
         </div>
       </section>
 
-      {/* Heilpraktiker Psychotherapie */}
+      {/* Heilpraktikerin Psychotherapie */}
       <section className="section-padding" style={{ backgroundColor: "var(--white)" }}>
         <div className="container">
           <div style={{

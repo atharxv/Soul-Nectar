@@ -46,7 +46,7 @@ export default function ServicesOverview() {
       title: t('services.items.0.title'),
       description: t('services.items.0.description'),
       image: "/practice-room-3.jpg",
-      route: "/heilpraktiker-aichach"
+      route: "/heilpraktikerin-aichach"
     },
     {
       id: "psychotherapie",

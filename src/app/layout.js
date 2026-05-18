@@ -1,5 +1,9 @@
 import { Caudex, Josefin_Sans } from "next/font/google";
 import { LanguageProvider } from "@/context/LanguageContext";
+import { CookieConsentProvider } from "@/context/CookieConsentContext";
+import StickyWhatsApp from "@/components/StickyWhatsApp";
+import CookieBanner from "@/components/CookieBanner";
+import LoadingScreen from "@/components/LoadingScreen";
 import "./globals.css";
 
 const caudex = Caudex({
@@ -22,11 +26,16 @@ export default function RootLayout({ children }) {
   return (
     <html lang="de" className={`${caudex.variable} ${josefin.variable}`}>
       <body>
+        <LoadingScreen />
         <a href="#main-content" className="skip-link">
           Zum Inhalt springen
         </a>
         <LanguageProvider>
-          {children}
+          <CookieConsentProvider>
+            {children}
+            <StickyWhatsApp />
+            <CookieBanner />
+          </CookieConsentProvider>
         </LanguageProvider>
       </body>
     </html>

@@ -508,9 +508,34 @@ export const en = {
       links: [
         { text: "Yoga Therapy in Aichach", url: "/yogatherapie-aichach" },
         { text: "Psychotherapy in Aichach", url: "/psychotherapie-aichach" },
-        { text: "Naturopath in Aichach", url: "/heilpraktiker-aichach" }
+        { text: "Naturopath in Aichach", url: "/heilpraktikerin-aichach" }
       ],
       closing: "This creates a holistic offer for people who want to strengthen body and soul equally."
     }
+  },
+  
+  // Cookie Banner
+  cookieBanner: {
+    message: "This website uses cookies. For more information please see our",
+    accept: "Accept All",
+    necessary: "Necessary Only",
+    settings: "Settings"
+  },
+  
+  // Cookie Page
+  cookiePage: {
+    title: "Cookie Policy",
+    intro: "This website uses cookies. You can find more information on the types of cookies used as well as enable individual cookies in their respective categories. You can adjust your settings at any time through the link in the footer of this website.",
+    necessary_title: "Strictly Necessary",
+    necessary_desc: "Strictly necessary cookies guarantee functions without which this website would not function as intended. As a result these cookies cannot be deactivated. These cookies are used exclusively by this website and are therefore first party cookies. This means that all information stored in the cookies will be returned to this website.",
+    functional_title: "Functional",
+    functional_desc: "Functional cookies enable this website to provide you with certain functions and to store information already provided (such as registered name or language selection) in order to offer you improved and more personalized functions.",
+    marketing_title: "Marketing / Third Party",
+    marketing_desc: "Marketing / Third Party Cookies originate from external advertising companies (among others) and are used to gather information about the websites visited by you, in order to e.g. create targeted advertising for you.",
+    performance_title: "Performance",
+    performance_desc: "Performance cookies gather information on how a web page is used. We use them to better understand how our web pages are used in order to improve their appeal, content and functionality.",
+    no_cookies: "No cookies in this category",
+    save: "Save Settings",
+    saved: "Settings saved"
   }
 };

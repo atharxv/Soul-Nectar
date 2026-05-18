@@ -1,17 +1,17 @@
 import Navbar from "@/components/Navbar";
 import ContactFooter from "@/components/ContactFooter";
-import HeilpraktikerContent from "./HeilpraktikerContent";
+import HeilpraktikerinContent from "./HeilpraktikerinContent";
 
 export const metadata = {
-  title: "Heilpraktiker Aichach | Ganzheitliche Begleitung",
+  title: "Heilpraktikerin Aichach | Ganzheitliche Begleitung",
   description: "Individuelle, achtsame und professionelle Unterstützung. Als Heilpraktikerin in Aichach begleite ich dich mit einem integrativen Ansatz.",
   alternates: {
-    canonical: "https://www.soulnectar.de/heilpraktiker-aichach",
+    canonical: "https://www.soulnectar.de/heilpraktikerin-aichach",
   },
   openGraph: {
-    title: "Heilpraktiker Aichach | Ganzheitliche Begleitung",
+    title: "Heilpraktikerin Aichach | Ganzheitliche Begleitung",
     description: "Individuelle, achtsame und professionelle Unterstützung. Als Heilpraktikerin in Aichach begleite ich dich mit einem integrativen Ansatz.",
-    url: "https://www.soulnectar.de/heilpraktiker-aichach",
+    url: "https://www.soulnectar.de/heilpraktikerin-aichach",
     siteName: "Soul Nectar",
     type: "website",
     images: [{
@@ -23,12 +23,12 @@ export const metadata = {
   }
 };
 
-export default function HeilpraktikerAichachPage() {
+export default function HeilpraktikerinAichachPage() {
   return (
     <>
       <Navbar />
       <main id="main-content">
-        <HeilpraktikerContent />
+        <HeilpraktikerinContent />
       </main>
       <ContactFooter />
     </>

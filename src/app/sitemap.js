@@ -9,7 +9,7 @@ export default function sitemap() {
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/heilpraktiker-aichach`,
+      url: `${baseUrl}/heilpraktikerin-aichach`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
@@ -43,6 +43,18 @@ export default function sitemap() {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/impressum`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/datenschutz`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.3,
     },
   ];
 }
