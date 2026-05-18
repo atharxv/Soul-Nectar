@@ -14,19 +14,31 @@ export default function ServicesOverview() {
   const [activeId, setActiveId] = useState(null);
   const modalRef = useRef(null);
 
-  useEffect(() => {
-    if (activeId && modalRef.current) {
-      modalRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
+  const scrollToCard = (element) => {
+    if (!element) return;
+    
+    const isMobile = window.innerWidth < 768;
+    const navbarHeight = 80;
+    
+    if (isMobile) {
+      // On mobile: scroll to top of card minus navbar and extra padding
+      const elementTop = element.getBoundingClientRect().top;
+      window.scrollBy({
+        top: elementTop - navbarHeight - 16,
+        behavior: 'smooth'
       });
-      // Offset for fixed navbar (~80px)
-      const timeoutId = setTimeout(() => {
-        window.scrollBy({ top: -80, behavior: 'smooth' });
-      }, 300);
-      return () => clearTimeout(timeoutId);
+    } else {
+      // On desktop: center the card in viewport
+      const elementRect = element.getBoundingClientRect();
+      const elementCenter = elementRect.top + elementRect.height / 2;
+      const viewportCenter = window.innerHeight / 2;
+      const offset = elementCenter - viewportCenter;
+      window.scrollBy({
+        top: offset - navbarHeight / 2,
+        behavior: 'smooth'
+      });
     }
-  }, [activeId]);
+  };
 
   const services = [
     {
@@ -159,7 +171,6 @@ export default function ServicesOverview() {
                   
                   {/* PREVIEW CARD */}
                   <motion.div 
-                    layoutId={`card-${service.id}`}
                     onClick={() => setActiveId(isSelected ? null : service.id)}
                     animate={{ 
                       scale: activeId && !isSelected ? 0.95 : 1, 
@@ -183,8 +194,7 @@ export default function ServicesOverview() {
                     whileHover={!isSelected ? { y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.06)" } : {}}
                   >
                     {/* Flush edge Image Wrapper */}
-                    <motion.div 
-                      layoutId={`img-${service.id}`} 
+                    <div 
                       style={{ 
                         width: "100%", 
                         height: "240px", 
@@ -201,14 +211,14 @@ export default function ServicesOverview() {
                         style={{ objectFit: "cover", transition: "transform 0.8s var(--ease-lux)" }} 
                         className="preview-img" 
                       />
-                    </motion.div>
+                    </div>
 
                     {/* Card Text Content with generous spacing padding */}
                     <div style={{ padding: "2rem 2.5rem 2.5rem 2.5rem" }}>
-                      <motion.h3 layoutId={`title-${service.id}`} style={{ fontSize: "1.6rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{service.title}</motion.h3>
-                      <motion.p layoutId={`desc-${service.id}`} style={{ color: "var(--text-secondary)", fontSize: "1rem", margin: 0 }}>
+                      <h3 style={{ fontSize: "1.6rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{service.title}</h3>
+                      <p style={{ color: "var(--text-secondary)", fontSize: "1rem", margin: 0 }}>
                         {service.description.length > 110 ? `${service.description.substring(0, 110)}...` : service.description}
-                      </motion.p>
+                      </p>
                     </div>
                   </motion.div>
                 </div>
@@ -219,14 +229,26 @@ export default function ServicesOverview() {
             <AnimatePresence>
               {activeId && (
                 <div 
-                  ref={modalRef}
                   style={{ position: "absolute", zIndex: 20, pointerEvents: "none", ...overlayPosition }}
                 >
                   <motion.div
-                    layoutId={`card-${activeId}`}
+                    ref={modalRef}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ 
+                      duration: 0.45,
+                      ease: [0.25, 1, 0.5, 1]
+                    }}
+                    onAnimationComplete={(definition) => {
+                      if (definition.opacity === 1 && modalRef.current) {
+                        scrollToCard(modalRef.current);
+                      }
+                    }}
                     style={{
                       backgroundColor: "var(--bg-card)",
-                      borderRadius: "24px",
+                      /* Approved exception: expanded service card panel — larger radius for floating panel feel */
+                      borderRadius: "16px",
                       width: "100%",
                       maxWidth: "680px",
                       margin: "0 auto",
@@ -266,10 +288,10 @@ export default function ServicesOverview() {
                       }} 
                       className="hide-scrollbar"
                     >
-                      <motion.h3 layoutId={`title-${activeId}`} style={{ fontSize: "2.4rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{activeService.title}</motion.h3>
-                      <motion.p layoutId={`desc-${activeId}`} style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "2rem" }}>
+                      <h3 style={{ fontSize: "2.4rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{activeService.title}</h3>
+                      <p style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "2rem" }}>
                         {activeService.description}
-                      </motion.p>
+                      </p>
                       
                       <motion.div style={{ display: "flex", flexDirection: "column" }}>
                         {activeService.bullets && (
