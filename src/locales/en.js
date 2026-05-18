@@ -149,7 +149,8 @@ export const en = {
     hero: {
       title: "Psychotherapy Aichach:<br/>Naturopath for Psychotherapy",
       desc1: "Psychotherapy in Aichach: a safe space for change, clarity, and inner stability. Body-oriented and trauma-informed psychotherapy for stress, anxiety, depression, and life crises.",
-      desc2: "Come back into contact with your self & your environment.<br/>That is being alive, in flow with the nectar of your soul.",
+      desc2_line1: "Come back into contact with your self & your environment.",
+      desc2_line2: "That is being alive, in flow with the nectar of your soul.",
       welcome: "Welcome to my private practice for psychotherapy in Aichach.",
       holistic: "As a naturopath for psychotherapy, I work holistically and humanistically. I integrate the body, the nervous system, emotions, and inner beliefs. Together we explore your individual strengths and resources and develop new perspectives for your life path.",
       empathetic: "If you are looking for an empathetic psychotherapist in Aichach, you will find a safe framework for sustainable change in my practice.",

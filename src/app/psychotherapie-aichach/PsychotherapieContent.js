@@ -73,7 +73,9 @@ export default function PsychotherapieContent() {
                   fontStyle: "italic"
                 }}
               >
-                {t('psychotherapieAichach.hero.desc2')}
+                {t('psychotherapieAichach.hero.desc2_line1')}
+                <br />
+                {t('psychotherapieAichach.hero.desc2_line2')}
               </p>
             </FadeIn>
 

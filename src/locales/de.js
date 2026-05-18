@@ -149,7 +149,8 @@ export const de = {
     hero: {
       title: "Psychotherapie Aichach:<br/>Heilpraktikerin für Psychotherapie",
       desc1: "Psychotherapie in Aichach: ein geschützter Raum für Veränderung, Klarheit und innere Stabilität. Körperorientierte und traumainformierte Psychotherapie bei Stress, Ängsten, Depressionen und Lebenskrisen.",
-      desc2: "Komme wieder in die Berührung zu deinem Selbst & deiner Umwelt.<br/>Das ist lebendig sein, im Fluss mit dem Nektar deiner Seele.",
+      desc2_line1: "Komme wieder in die Berührung zu deinem Selbst & deiner Umwelt.",
+      desc2_line2: "Das ist lebendig sein, im Fluss mit dem Nektar deiner Seele.",
       welcome: "Herzlich willkommen in meiner Privatpraxis für Psychotherapie in Aichach.",
       holistic: "Als Heilpraktikerin für Psychotherapie arbeite ich ganzheitlich und humanistisch. Dabei beziehe ich den Körper, das Nervensystem, Gefühle sowie innere Glaubenssätze mit ein. Gemeinsam erkunden wir Ihre individuellen Stärken und Ressourcen und entwickeln neue Perspektiven für Ihren Lebensweg.",
       empathetic: "Wenn du eine einfühlsame Psychotherapeutin in Aichach suchst, findest du in meiner Praxis einen geschützten Rahmen für nachhaltige Veränderung.",
