@@ -5,6 +5,23 @@ import { useState } from "react";
 import FadeIn from "./FadeIn";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { useLanguage } from "@/context/LanguageContext";
+
+const Facebook = ({ size = 24, ...props }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+  </svg>
+);
 import { TopographicBackground, BotanicalIllustration } from "./DecorativePatterns";
 
 export default function ContactFooter() {
@@ -86,6 +103,26 @@ export default function ContactFooter() {
                 <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem", color: "rgba(255,255,255,0.8)" }}>
                   <Mail size={20} style={{ flexShrink: 0 }} />
                   <a href="mailto:therapie@soulnectar.de" style={{ textDecoration: "underline", color: "inherit" }}>therapie@soulnectar.de</a>
+                </div>
+                
+                <div style={{ display: "flex", alignItems: "center", gap: "1rem", marginBottom: "1rem", color: "var(--white)" }}>
+                  <Facebook size={22} style={{ flexShrink: 0 }} />
+                  <a 
+                    href="https://www.facebook.com/people/Soulnectar/100064068909263/#"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      color: "inherit",
+                      textDecoration: "underline",
+                      fontWeight: 500,
+                      letterSpacing: "0.02em",
+                      transition: "opacity 0.3s var(--ease-lux)"
+                    }}
+                    onMouseEnter={(e) => e.currentTarget.style.opacity = "0.7"}
+                    onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+                  >
+                    Facebook
+                  </a>
                 </div>
               </div>
               
