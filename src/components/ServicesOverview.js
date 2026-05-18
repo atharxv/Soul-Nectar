@@ -16,22 +16,14 @@ export default function ServicesOverview() {
 
   useEffect(() => {
     if (activeId && modalRef.current) {
-      const isMobileSize = window.innerWidth < 768;
-      
-      // Smoothly scroll the container into view
       modalRef.current.scrollIntoView({
         behavior: 'smooth',
-        block: isMobileSize ? 'start' : 'center'
+        block: 'center'
       });
-
-      // Luxurious secondary correction for the fixed Navbar
+      // Offset for fixed navbar (~80px)
       const timeoutId = setTimeout(() => {
-        window.scrollBy({
-          top: isMobileSize ? -100 : -40,
-          behavior: 'smooth'
-        });
-      }, 500);
-
+        window.scrollBy({ top: -80, behavior: 'smooth' });
+      }, 300);
       return () => clearTimeout(timeoutId);
     }
   }, [activeId]);
@@ -177,8 +169,9 @@ export default function ServicesOverview() {
                     transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
                     style={{
                       backgroundColor: "var(--bg-card)",
-                      padding: "2.5rem",
-                      borderRadius: "12px",
+                      borderRadius: "var(--radius-md)",
+                      border: "1px solid rgba(0,0,0,0.08)",
+                      overflow: "hidden",
                       height: "100%",
                       display: "flex",
                       flexDirection: "column",
@@ -189,13 +182,34 @@ export default function ServicesOverview() {
                     className="preview-card"
                     whileHover={!isSelected ? { y: -8, boxShadow: "0 15px 40px rgba(0,0,0,0.06)" } : {}}
                   >
-                    <motion.div layoutId={`img-${service.id}`} style={{ width: "100%", height: "240px", marginBottom: "2rem", borderRadius: "8px", overflow: "hidden", position: "relative" }}>
-                      <Image src={service.image} alt={service.title} fill sizes="(max-width: 768px) 100vw, 25vw" style={{ objectFit: "cover", transition: "transform 0.8s var(--ease-lux)" }} className="preview-img" />
+                    {/* Flush edge Image Wrapper */}
+                    <motion.div 
+                      layoutId={`img-${service.id}`} 
+                      style={{ 
+                        width: "100%", 
+                        height: "240px", 
+                        borderRadius: "var(--radius-md) var(--radius-md) 0 0", 
+                        overflow: "hidden", 
+                        position: "relative" 
+                      }}
+                    >
+                      <Image 
+                        src={service.image} 
+                        alt={service.title} 
+                        fill 
+                        sizes="(max-width: 768px) 100vw, 25vw" 
+                        style={{ objectFit: "cover", transition: "transform 0.8s var(--ease-lux)" }} 
+                        className="preview-img" 
+                      />
                     </motion.div>
-                    <motion.h3 layoutId={`title-${service.id}`} style={{ fontSize: "1.6rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{service.title}</motion.h3>
-                    <motion.p layoutId={`desc-${service.id}`} style={{ color: "var(--text-secondary)", fontSize: "1rem" }}>
-                      {service.description.length > 110 ? `${service.description.substring(0, 110)}...` : service.description}
-                    </motion.p>
+
+                    {/* Card Text Content with generous spacing padding */}
+                    <div style={{ padding: "2rem 2.5rem 2.5rem 2.5rem" }}>
+                      <motion.h3 layoutId={`title-${service.id}`} style={{ fontSize: "1.6rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{service.title}</motion.h3>
+                      <motion.p layoutId={`desc-${service.id}`} style={{ color: "var(--text-secondary)", fontSize: "1rem", margin: 0 }}>
+                        {service.description.length > 110 ? `${service.description.substring(0, 110)}...` : service.description}
+                      </motion.p>
+                    </div>
                   </motion.div>
                 </div>
               );
@@ -214,10 +228,11 @@ export default function ServicesOverview() {
                       backgroundColor: "var(--bg-card)",
                       borderRadius: "24px",
                       width: "100%",
+                      maxWidth: "680px",
+                      margin: "0 auto",
                       height: "auto",
-                      maxHeight: isMobile ? "90vh" : "85vh",
                       display: "flex",
-                      flexDirection: isMobile ? "column" : "row",
+                      flexDirection: "column",
                       overflow: "hidden", 
                       pointerEvents: "auto",
                       boxShadow: "0 30px 80px rgba(0,0,0,0.15)",
@@ -228,21 +243,35 @@ export default function ServicesOverview() {
                     <button 
                       onClick={() => setActiveId(null)} 
                       aria-label={t('services.ariaClose')}
-                      style={{ position: 'absolute', top: '1.5rem', left: '1.5rem', background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 30, boxShadow: "0 4px 10px rgba(0,0,0,0.05)", transition: "transform 0.3s var(--ease-lux)" }} 
+                      style={{ position: 'absolute', top: '1.5rem', right: '1.5rem', background: 'var(--bg-card)', color: 'var(--text-primary)', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', width: '45px', height: '45px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', zIndex: 30, boxShadow: "0 4px 10px rgba(0,0,0,0.05)", transition: "transform 0.3s var(--ease-lux)" }} 
                       onMouseEnter={(e) => e.currentTarget.style.transform = "rotate(90deg)"} 
                       onMouseLeave={(e) => e.currentTarget.style.transform = "none"}
                     >
                       <X size={20} />
                     </button>
 
-                    {/* CLEAN EDITORIAL SPLIT LAYOUT */}
-                    <div style={{ flex: "1 1 55%", minWidth: "300px", padding: "4rem 3.5rem", textAlign: "left", display: "flex", flexDirection: "column", justifyContent: "flex-start", overflowY: "auto" }} className="hide-scrollbar">
+                    {/* Premium Animated Text Content Wrapper */}
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, ease: [0.25, 1, 0.5, 1] }}
+                      style={{ 
+                        width: "100%", 
+                        padding: "var(--space-lg) var(--space-md)", 
+                        textAlign: "left", 
+                        display: "flex", 
+                        flexDirection: "column", 
+                        justifyContent: "flex-start", 
+                        overflowY: "auto" 
+                      }} 
+                      className="hide-scrollbar"
+                    >
                       <motion.h3 layoutId={`title-${activeId}`} style={{ fontSize: "2.4rem", marginBottom: "1.2rem", color: "var(--text-primary)" }}>{activeService.title}</motion.h3>
                       <motion.p layoutId={`desc-${activeId}`} style={{ fontSize: "1.05rem", color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "2rem" }}>
                         {activeService.description}
                       </motion.p>
                       
-                      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ delay: 0.15 }} style={{ display: "flex", flexDirection: "column" }}>
+                      <motion.div style={{ display: "flex", flexDirection: "column" }}>
                         {activeService.bullets && (
                           <ul style={{ listStyle: "none", padding: 0, marginBottom: "2rem" }}>
                             {activeService.bullets.map((b, i) => (
@@ -267,23 +296,7 @@ export default function ServicesOverview() {
                           )}
                         </div>
                       </motion.div>
-                    </div>
-                    
-                    {/* IMAGE COLUMN */}
-                    <motion.div 
-                      layoutId={`img-${activeId}`} 
-                      style={{ 
-                        flex: isMobile ? "0 0 280px" : "1 1 45%", 
-                        minWidth: isMobile ? "100%" : "300px", 
-                        position: "relative", 
-                        borderLeft: isMobile ? "none" : "1px solid rgba(0,0,0,0.06)",
-                        borderTop: isMobile ? "1px solid rgba(0,0,0,0.06)" : "none",
-                        order: isMobile ? 2 : 1
-                      }}
-                    >
-                      <Image src={activeService.image} alt={activeService.title} fill sizes="(max-width: 1024px) 100vw, 45vw" style={{ objectFit: "cover" }} />
                     </motion.div>
-
                   </motion.div>
                 </div>
               )}

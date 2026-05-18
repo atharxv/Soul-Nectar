@@ -146,121 +146,133 @@ export default function PhotoGallery() {
               position: "fixed",
               top: 0,
               left: 0,
-              width: "100%",
-              height: "100%",
-              backgroundColor: "rgba(56, 63, 50, 0.85)", // rgba of var(--text-primary)
-              zIndex: 9999,
+              right: 0,
+              bottom: 0,
+              /* One-time approved exception matching --text-primary value */
+              backgroundColor: "rgba(56, 63, 50, 0.85)",
+              zIndex: 99999,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              padding: "2rem"
+              padding: "1rem"
             }}
             onClick={() => setLightboxIndex(null)}
           >
+            {/* Close Button */}
             <button
               onClick={() => setLightboxIndex(null)}
               aria-label={t("fotogalerie.lightbox.close")}
               style={{
                 position: "absolute",
-                top: "2rem",
-                right: "2rem",
-                background: "none",
+                top: "1rem",
+                right: "1rem",
+                background: "rgba(0,0,0,0.4)",
                 border: "none",
+                borderRadius: "50%",
                 color: "var(--white)",
                 cursor: "pointer",
-                padding: "0.5rem"
+                width: "48px",
+                height: "48px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                zIndex: 100000,
+                transition: "background 0.3s var(--ease-lux)"
               }}
+              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.6)"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.4)"}
             >
-              <X size={32} />
+              <X size={24} />
             </button>
 
-            {/* Navigation Arrows */}
+            {/* Prev Arrow */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex((prev) => (prev - 1 + filteredImages.length) % filteredImages.length);
               }}
-              aria-label={t('fotogalerie.lightbox.prev')}
+              aria-label={t("fotogalerie.lightbox.prev")}
               style={{
                 position: "absolute",
-                left: "2rem",
+                left: "1rem",
                 top: "50%",
                 transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(0,0,0,0.4)",
                 border: "none",
                 borderRadius: "50%",
                 color: "var(--white)",
                 cursor: "pointer",
-                padding: "1rem",
+                width: "48px",
+                height: "48px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                zIndex: 10001,
+                zIndex: 100000,
                 transition: "background 0.3s var(--ease-lux)"
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
+              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.6)"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.4)"}
             >
-              <ChevronLeft size={32} />
+              <ChevronLeft size={24} />
             </button>
 
+            {/* Next Arrow */}
             <button
               onClick={(e) => {
                 e.stopPropagation();
                 setLightboxIndex((prev) => (prev + 1) % filteredImages.length);
               }}
-              aria-label={t('fotogalerie.lightbox.next')}
+              aria-label={t("fotogalerie.lightbox.next")}
               style={{
                 position: "absolute",
-                right: "2rem",
+                right: "1rem",
                 top: "50%",
                 transform: "translateY(-50%)",
-                background: "rgba(255,255,255,0.1)",
+                background: "rgba(0,0,0,0.4)",
                 border: "none",
                 borderRadius: "50%",
                 color: "var(--white)",
                 cursor: "pointer",
-                padding: "1rem",
+                width: "48px",
+                height: "48px",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                zIndex: 10001,
+                zIndex: 100000,
                 transition: "background 0.3s var(--ease-lux)"
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.2)"}
-              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(255,255,255,0.1)"}
+              onMouseEnter={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.6)"}
+              onMouseLeave={(e) => e.currentTarget.style.background = "rgba(0,0,0,0.4)"}
             >
-              <ChevronRight size={32} />
+              <ChevronRight size={24} />
             </button>
 
+            {/* Image Wrapper */}
             <motion.div
               key={lightboxIndex}
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
               style={{
                 position: "relative",
-                maxWidth: "min(90vw, 1200px)",
-                maxHeight: "85vh",
+                width: "90vw",
+                height: "85svh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                border: "4px solid var(--white)",
-                backgroundColor: "var(--white)", // Ensures border looks tight around image
-                boxShadow: "0 20px 50px rgba(0,0,0,0.3)"
+                pointerEvents: "none"
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              <div style={{ position: "relative", width: "100%", maxWidth: "min(90vw, 1200px)", height: "85vh" }}>
-                <Image
-                  src={filteredImages[lightboxIndex]?.src}
-                  alt={filteredImages[lightboxIndex]?.alt}
-                  fill
-                  sizes="90vw"
-                  style={{ objectFit: "contain" }}
-                />
-              </div>
+              <Image
+                src={filteredImages[lightboxIndex]?.src}
+                alt={filteredImages[lightboxIndex]?.alt}
+                fill
+                sizes="90vw"
+                style={{ objectFit: "contain" }}
+                priority
+              />
             </motion.div>
           </motion.div>
         )}

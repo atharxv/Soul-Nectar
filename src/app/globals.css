@@ -1412,3 +1412,51 @@ footer > *:not(.topo-bg-layer):not(.botanical-illust) {
   position: relative;
   z-index: 1;
 }
+
+/* --- LIGHTBOX FIX --- */
+.masonry-grid + div button {
+  outline: none;
+}
+
+/* --- GOOGLE MAPS DIRECT LOAD --- */
+.praxisstandort__map-wrapper {
+  width: 100%;
+  min-height: 400px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.praxisstandort__map-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .praxisstandort__map-wrapper,
+  .praxisstandort__map-wrapper iframe {
+    min-height: 280px;
+  }
+}
+
+.map-privacy-note {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: var(--space-xs);
+  opacity: 0.7;
+}
+
+.map-privacy-note a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.3s var(--ease-lux);
+}
+
+.map-privacy-note a:hover {
+  opacity: 0.6;
+}

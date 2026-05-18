@@ -82,7 +82,9 @@ export const de = {
     mapTitle: "Praxisstandort Soul Nectar in Aichach",
     mapAriaLabel: "Google Maps Karte: Walchenstr. 33, 86551 Aichach",
     mapLoadButton: "Karte laden",
-    mapLoadNote: "Mit dem Laden der Karte akzeptieren Sie die Datenschutzbestimmungen von Google."
+    mapLoadNote: "Mit dem Laden der Karte akzeptieren Sie die Datenschutzbestimmungen von Google.",
+    mapPrivacyNote: "Diese Karte wird von Google Maps bereitgestellt.",
+    mapPrivacyLink: "Datenschutzbestimmungen von Google"
   },
   
   // Footer
