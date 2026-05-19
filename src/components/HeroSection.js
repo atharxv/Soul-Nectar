@@ -3,7 +3,13 @@ import FadeIn from "./FadeIn";
 import { useLanguage } from "@/context/LanguageContext";
 import { TopographicBackground, BotanicalIllustration } from "./DecorativePatterns";
 
-export default function HeroSection() {
+export default function HeroSection({ 
+  heroImage = "/hero-homepage.jpg",
+  heroImagePosition = "center",
+  heroImageMode = "bg",
+  gradientStart = "15%",
+  gradientEnd = "50%"
+}) {
   const { t } = useLanguage();
   return (
     <section className="hero-section" style={{
@@ -77,26 +83,42 @@ export default function HeroSection() {
         width: "55%",
         height: "100%",
         zIndex: 0,
-        maskImage: "linear-gradient(to right, transparent, black 15%)",
-        WebkitMaskImage: "linear-gradient(to right, transparent, black 15%)"
+        maskImage: `linear-gradient(to right, transparent, black ${gradientStart})`,
+        WebkitMaskImage: `linear-gradient(to right, transparent, black ${gradientStart})`
       }}>
+        {heroImageMode === "img" ? (
+          <img 
+            src={heroImage} 
+            alt="" 
+            style={{
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: heroImagePosition
+            }} 
+          />
+        ) : (
+          <div style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            backgroundImage: `url('${heroImage}')`,
+            backgroundSize: "cover",
+            backgroundPosition: heroImagePosition,
+          }} />
+        )}
         <div style={{
           position: "absolute",
           top: 0,
           left: 0,
           width: "100%",
           height: "100%",
-          backgroundImage: "url('/hero-homepage.jpg')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }} />
-        <div style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: "linear-gradient(90deg, var(--bg-color) 0%, rgba(244, 239, 233, 0.8) 15%, rgba(244, 239, 233, 0) 50%)",
+          background: `linear-gradient(90deg, var(--bg-color) 0%, rgba(244, 239, 233, 0.8) ${gradientStart}, rgba(244, 239, 233, 0) ${gradientEnd})`,
         }} />
       </div>
     </section>

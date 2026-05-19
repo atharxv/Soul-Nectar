@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Calendar } from "lucide-react";
 
 export default function StickyWhatsApp() {
   return (
@@ -20,20 +21,6 @@ export default function StickyWhatsApp() {
         .sticky-buttons-container > * {
           pointer-events: auto;
         }
-        .booking-text-desktop {
-          display: inline;
-        }
-        .booking-text-mobile {
-          display: none;
-        }
-        @media (max-width: 767px) {
-          .booking-text-desktop {
-            display: none;
-          }
-          .booking-text-mobile {
-            display: inline;
-          }
-        }
       `}</style>
 
       <div className="sticky-buttons-container">
@@ -46,16 +33,12 @@ export default function StickyWhatsApp() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           style={{
+            width: "56px",
             height: "56px",
-            padding: "0 24px",
-            borderRadius: "999px",
+            padding: 0,
+            borderRadius: "50%",
             backgroundColor: "var(--accent-olive-dark)",
             color: "var(--white)",
-            fontFamily: "var(--font-josefin)",
-            textTransform: "uppercase",
-            letterSpacing: "0.15em",
-            fontSize: "0.85rem",
-            fontWeight: 600,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
@@ -64,8 +47,7 @@ export default function StickyWhatsApp() {
             flexShrink: 0,
           }}
         >
-          <span className="booking-text-desktop">Termin buchen</span>
-          <span className="booking-text-mobile">Termin</span>
+          <Calendar size={28} />
         </motion.a>
 
         {/* Sticky WhatsApp button */}
